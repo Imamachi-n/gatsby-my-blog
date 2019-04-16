@@ -41,7 +41,6 @@ Wordpress2016.overrideThemeStyles = () => ({
   "html,body,h1,h2,h3,h4,h5,h6": {
     color: "#444",
     fontFamily: [
-      "Roboto",
       "-apple-system-body",
       "BlinkMacSystemFont",
       "Helvetica Neue",

@@ -13,23 +13,21 @@ const Header = ({ siteTitle }) => (
   >
     <div
       css={css`
-        margin: 0 auto;
+        margin: 0;
         max-width: 700px;
-        padding: ${rhythm(2)};
-        padding-top: ${rhythm(1.5)};
       `}
     >
-      <Link to={`/`}>
-        <h3
-          css={css`
-            margin-bottom: ${rhythm(2)};
-            display: inline-block;
-            font-style: normal;
-          `}
+      <h1 style={{ margin: 0 }}>
+        <Link
+          to="/"
+          style={{
+            color: `white`,
+            textDecoration: `none`,
+          }}
         >
           {siteTitle}
-        </h3>
-      </Link>
+        </Link>
+      </h1>
       <Link
         to={`/about/`}
         css={css`

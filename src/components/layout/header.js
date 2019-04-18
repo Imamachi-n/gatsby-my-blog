@@ -17,7 +17,11 @@ const Header = ({ siteTitle }) => (
         max-width: 700px;
       `}
     >
-      <h1 style={{ margin: 0 }}>
+      <h1
+        css={css`
+          margin: 0;
+        `}
+      >
         <Link
           to="/"
           style={{

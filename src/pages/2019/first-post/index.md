@@ -15,13 +15,25 @@ yarn add gatsby-plugin-typography react-typography typography typography-theme-w
 
 CSS-in-JSのライブラリ。JavaScriptのコードの中に、CSSの定義を埋め込む形式。高いパフォーマンス。コードの可読性は悪くなる？
 
+Gatsby用のプラグインがあるので、導入する必要があります（逆に、プラグインを導入しないとEmotionのCSSの定義が適応されないので注意です）。
+<https://www.gatsbyjs.org/docs/emotion/>
+<https://emotion.sh/>
+
 ```bash
-yarn add @emotion/core
+yarn add gatsby-plugin-emotion @emotion/core
+```
+
+`gatsby-config.js`に次のコードを追加します。
+
+```javascript
+module.exports = {
+  plugins: [`gatsby-plugin-emotion`],
+}
 ```
 
 ## StaticQuery
 
-Gatsby v2から導入された新しいAPI。Pageコンポーネントで使われているGraphQLタグは、Pageコンポーネント以外では使用できなかった。StaticQueryを利用することで、Layoutコンポーネントのように、PageコンポーネントでないコンポーネントでもGraphQLが利用できる。
+Gatsby v2から導入された新しいAPI。Pageコンポーネントで使われているGraphQLタグは、Pageコンポーネント以外では使用できませんでした。v2から導入されたStaticQueryを利用することで、Layoutコンポーネントのように、PageコンポーネントでないコンポーネントでもGraphQLが利用できるようになります。
 
 以下に具体例を示す。
 
@@ -49,7 +61,7 @@ export default () => (
 )
 ```
 
-`gatsby-config.js`ファイルに以下の内容が記載されいる場合を想定する。
+`gatsby-config.js`ファイルに以下の内容が記載されている場合を想定します。
 
 ```javascript
 module.exports = {
@@ -59,7 +71,7 @@ module.exports = {
 }
 ```
 
-`gatsby develop`コマンドを実行後、`http://localhost:8000/___graphql`のURLにアクセスし、以下のクエリを実行してみる。
+`gatsby develop`コマンドを実行後、`http://localhost:8000/___graphql`のURLにアクセスし、以下のクエリを実行してみます。
 
 ```graphql
 query HeadingQuery {
@@ -71,7 +83,8 @@ query HeadingQuery {
     }
 ```
 
-すると、以下の結果が得られるはず。
+すると、以下の結果が得られるはずです。
+
 ```
 {
   "data": {

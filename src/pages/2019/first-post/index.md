@@ -85,7 +85,7 @@ query HeadingQuery {
 
 すると、以下の結果が得られるはずです。
 
-```
+```graphql
 {
   "data": {
     "site": {
@@ -95,4 +95,47 @@ query HeadingQuery {
     }
   }
 }
+```
+
+## MarkdownファイルをHTMLファイルに変換する
+
+`gatsby-transformer-remark`プラグインを導入します。
+
+```bash
+yarn add gatsby-transformer-remark
+```
+
+`gatsby-config.js`に次のコードを追加します。
+
+```javascript
+module.exports = {
+  plugins: [
+      `gatsby-transformer-remark`,
+  ],
+}
+```
+
+プラグインを導入することで、GraqhQLからMarkdownファイルを検索して調べる事ができるようになります。
+
+```graphql
+export const query = graphql`
+  query {
+    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+      totalCount
+      edges {
+        node {
+          id
+          frontmatter {
+            title
+            date(formatString: "DD MMMM, YYYY")
+          }
+          fields {
+            slug
+          }
+          excerpt
+        }
+      }
+    }
+  }
+`
 ```

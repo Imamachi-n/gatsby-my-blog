@@ -15,9 +15,9 @@ yarn add gatsby-plugin-typography react-typography typography typography-theme-w
 
 CSS-in-JSのライブラリ。JavaScriptのコードの中に、CSSの定義を埋め込む形式。高いパフォーマンス。コードの可読性は悪くなる？
 
-Gatsby用のプラグインがあるので、導入する必要があります（逆に、プラグインを導入しないとEmotionのCSSの定義が適応されないので注意です）。
-<https://www.gatsbyjs.org/docs/emotion/>
-<https://emotion.sh/>
+Gatsby用のプラグインがあるので、導入する必要があります（逆に、プラグインを導入しないとEmotionのCSSの定義が適応されないので注意です）。  
+<https://www.gatsbyjs.org/docs/emotion/>  
+<https://emotion.sh/>  
 
 ```bash
 yarn add gatsby-plugin-emotion @emotion/core
@@ -158,6 +158,13 @@ yarn add gatsby-remark-images gatsby-plugin-sharp
 `gatsby-config.js`ファイル内で以下を設定します。
 `maxWidth`は表示する画像ファイルの最大幅を指定します。
 
+ちなみに対応しているImageファイルのフォーマットは
+
+* JPEG
+* PNG
+
+だけなので、注意です。
+
 ```javascript
 // In your gatsby-config.js
 plugins: [
@@ -179,4 +186,44 @@ plugins: [
     },
   },
 ]
+```
+
+## Markdownファイルの見出しを生成する
+
+prismjsの後に宣言する必要がある。
+
+<https://www.gatsbyjs.org/packages/gatsby-remark-autolink-headers/>
+
+```bash
+yarn add gatsby-remark-autolink-headers
+```
+
+## シンタックスハイライトをつける
+
+Markdownファイルのソースコード部分に、シンタックスハイライトをつけることができます。
+
+<https://www.gatsbyjs.org/packages/gatsby-remark-prismjs/>
+
+まずは、こちらのPrismJSの公式サイトから、プレビューを見て好みのテーマを探しましょう。
+
+<https://prismjs.com/>
+
+続いて、好きなテーマを導入してみましょう。以下で、各テーマのCSSファイル名がわかるので確認しておきます。
+
+<https://github.com/PrismJS/prism/tree/1d5047df37aacc900f8270b1c6215028f6988eb1/themes>
+
+```bash
+yarn add gatsby-remark-prismjs prismjs
+```
+
+`gatsby-browser.js`に以下を追加しましょう。ここでは、`TOMORROW NIGHT`を使ってみます。
+
+```js
+require("prismjs/themes/prism-tomorrow.css")
+```
+
+## コードタイトルを追加する
+
+```bash
+yarn add -D gatsby-remark-code-titles
 ```

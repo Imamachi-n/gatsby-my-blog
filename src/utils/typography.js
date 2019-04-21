@@ -44,12 +44,15 @@ Wordpress2016.overrideThemeStyles = () => ({
     fontSize: "1.6rem",
     borderBottom: "1px solid #ddd",
   },
+  p: {
+    marginBottom: "10px",
+  },
   "html, body": {
     fontWeight: "500",
   },
   a: {
     boxShadow: "none",
-    color: "#c85740",
+    color: "#3f9ac8",
   },
   "a:hover": {
     opacity: "0.7",

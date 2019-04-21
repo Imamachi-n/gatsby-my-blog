@@ -10,14 +10,20 @@ export default ({ data }) => {
     <Layout>
       <div>
         <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
-
-        <h4
+        <h1
           css={css`
-            margin: 0;
+            margin-top: 26px;
+          `}
+        >
+          Blog Top
+        </h1>
+        {/* <h4
+          css={css`
+            margin-top: ${rhythm(1)};
           `}
         >
           {data.allMarkdownRemark.totalCount} Posts
-        </h4>
+        </h4> */}
         {data.allMarkdownRemark.edges.map(({ node }) => (
           <div key={node.id}>
             <Link
@@ -29,6 +35,7 @@ export default ({ data }) => {
             >
               <h3
                 css={css`
+                  // margin-top: ${rhythm(1 / 2)};
                   margin-bottom: ${rhythm(1 / 4)};
                 `}
               >

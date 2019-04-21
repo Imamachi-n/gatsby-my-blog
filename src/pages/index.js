@@ -10,14 +10,14 @@ export default ({ data }) => {
     <Layout>
       <div>
         <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
-        <h1>Hi people</h1>
-        <p>Welcome to your new Gatsby site.</p>
-        <p>Now go build something great.</p>
-        <p>日本語を試してみる</p>
-        <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }} />
-        <Link to="/about/">Go to page 2</Link>
 
-        <h4>{data.allMarkdownRemark.totalCount} Posts</h4>
+        <h4
+          css={css`
+            margin: 0;
+          `}
+        >
+          {data.allMarkdownRemark.totalCount} Posts
+        </h4>
         {data.allMarkdownRemark.edges.map(({ node }) => (
           <div key={node.id}>
             <Link

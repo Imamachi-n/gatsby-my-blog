@@ -97,6 +97,8 @@ query HeadingQuery {
 }
 ```
 
+![GraphiQL_2019-04-16_21-40-28](GraphiQL_2019-04-16_21-40-28.png)
+
 ## MarkdownファイルをHTMLファイルに変換する
 
 `gatsby-transformer-remark`プラグインを導入します。
@@ -138,4 +140,43 @@ export const query = graphql`
     }
   }
 `
+```
+
+## Markdownファイル内のImageファイルを表示する
+
+Markdownファイル内で指定された画像ファイルは、`gatsby-transformer-remark`プラグインだけでは表示されません。
+`gatsby-remark-images`プラグインを導入することで読み込めるようにします。
+
+<https://www.gatsbyjs.org/packages/gatsby-remark-images/>
+
+まず、ライブラリをインストールします。
+
+```bash
+yarn add gatsby-remark-images gatsby-plugin-sharp
+```
+
+`gatsby-config.js`ファイル内で以下を設定します。
+`maxWidth`は表示する画像ファイルの最大幅を指定します。
+
+```javascript
+// In your gatsby-config.js
+plugins: [
+  `gatsby-plugin-sharp`,
+  {
+    resolve: `gatsby-transformer-remark`,
+    options: {
+      plugins: [
+        {
+          resolve: `gatsby-remark-images`,
+          options: {
+            // It's important to specify the maxWidth (in pixels) of
+            // the content container as this plugin uses this as the
+            // base for generating different widths of each image.
+            maxWidth: 590,
+          },
+        },
+      ],
+    },
+  },
+]
 ```

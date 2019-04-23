@@ -1,5 +1,5 @@
 import React from "react"
-import { Link, StaticQuery } from "gatsby"
+import { Link, StaticQuery, graphql } from "gatsby"
 import { rhythm } from "../../utils/typography"
 import { css } from "@emotion/core"
 
@@ -28,30 +28,42 @@ const Bloglist = () => (
     render={data => (
       <>
         {data.allMarkdownRemark.edges.map(({ node }) => (
-          <div key={node.id}>
-            <Link
-              to={node.fields.slug}
+          <div>
+            <div
+              key={node.id}
               css={css`
-                text-decoration: none;
-                color: inherit;
+                &:hover {
+                  border-radius: 5px;
+                  background-color: aliceblue;
+                }
               `}
             >
-              <h3
+              <Link
+                to={node.fields.slug}
                 css={css`
-                  margin-bottom: ${rhythm(1 / 4)};
+                  text-decoration: none;
+                  color: inherit;
                 `}
               >
-                {node.frontmatter.title}{" "}
-                <span
+                <h3
                   css={css`
-                    color: #bbb;
+                    margin-top: ${rhythm(1 / 4)};
+                    margin-bottom: ${rhythm(1 / 4)};
                   `}
                 >
-                  — {node.frontmatter.date}
-                </span>
-              </h3>
-              <p>{node.excerpt}</p>
-            </Link>
+                  {node.frontmatter.title}{" "}
+                  <span
+                    css={css`
+                      color: #bbb;
+                    `}
+                  >
+                    — {node.frontmatter.date}
+                  </span>
+                </h3>
+                <p>{node.excerpt}</p>
+              </Link>
+            </div>
+            <hr />
           </div>
         ))}
       </>

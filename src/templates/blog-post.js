@@ -9,8 +9,6 @@ export default ({ data }) => {
     <Layout>
       <div
         css={css`
-          padding-right: 20px;
-          padding-left: 20px;
           ul,
           ol {
             margin-left: 1.44rem;

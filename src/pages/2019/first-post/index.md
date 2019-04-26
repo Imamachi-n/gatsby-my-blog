@@ -227,3 +227,79 @@ require("prismjs/themes/prism-tomorrow.css")
 ```bash
 yarn add -D gatsby-remark-code-titles
 ```
+
+## GraphQL
+
+### ブログの目次を作る
+
+`value`が目次、`depth`は見出しの大きさ（H1, H2, H3とか）のこと。
+
+```graphql
+{
+  markdownRemark(fields: { slug: { eq: "/2019/first-post/" } }) {
+    id
+    headings{
+      value
+      depth
+    }
+    fields{
+      slug
+    }
+  }
+}
+```
+
+```json
+{
+  "data": {
+    "markdownRemark": {
+      "id": "ff34f383-8e24-57c0-a39a-488a2dba24e9",
+      "headings": [
+        {
+          "value": "Gatsby typographyプラグインを導入する",
+          "depth": 2
+        },
+        {
+          "value": "emotion",
+          "depth": 2
+        },
+        {
+          "value": "StaticQuery",
+          "depth": 2
+        },
+        {
+          "value": "MarkdownファイルをHTMLファイルに変換する",
+          "depth": 2
+        },
+        {
+          "value": "Markdownファイル内のImageファイルを表示する",
+          "depth": 2
+        },
+        {
+          "value": "Markdownファイルの見出しを生成する",
+          "depth": 2
+        },
+        {
+          "value": "シンタックスハイライトをつける",
+          "depth": 2
+        },
+        {
+          "value": "コードタイトルを追加する",
+          "depth": 2
+        },
+        {
+          "value": "GraphQL",
+          "depth": 2
+        },
+        {
+          "value": "ブログの目次を作る",
+          "depth": 3
+        }
+      ],
+      "fields": {
+        "slug": "/2019/first-post/"
+      }
+    }
+  }
+}
+```

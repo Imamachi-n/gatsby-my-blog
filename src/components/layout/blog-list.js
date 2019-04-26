@@ -28,9 +28,8 @@ const Bloglist = () => (
     render={data => (
       <>
         {data.allMarkdownRemark.edges.map(({ node }) => (
-          <div>
+          <div key={node.id}>
             <div
-              key={node.id}
               css={css`
                 &:hover {
                   border-radius: 5px;

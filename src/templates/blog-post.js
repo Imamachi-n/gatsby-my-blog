@@ -17,6 +17,9 @@ export default ({ data }) => {
           li {
             margin-bottom: 0.5rem;
           }
+          code {
+            font-size: 13px;
+          }
         `}
       >
         <h1>{post.frontmatter.title}</h1>

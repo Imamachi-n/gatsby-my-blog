@@ -1,10 +1,19 @@
 import React from "react"
 import { graphql } from "gatsby"
-import Layout from "../components/layout/layout"
 import { css } from "@emotion/core"
+import Layout from "../components/layout/layout"
+import BlogTOC from "../components/layout/blog-toc"
 
 export default ({ data }) => {
   const post = data.markdownRemark
+  // A list for the table of blog contents
+  const linkLists = post.headings.map(({ value, depth }) => {
+    return {
+      value: value,
+      link: value.replace(" ", "-").toLowerCase(),
+      depth: depth,
+    }
+  })
   return (
     <Layout>
       <div
@@ -22,6 +31,7 @@ export default ({ data }) => {
           }
         `}
       >
+        <BlogTOC headerList={linkLists} blogLink={post.fields.slug} />
         <h1>{post.frontmatter.title}</h1>
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
       </div>
@@ -35,6 +45,13 @@ export const query = graphql`
       html
       frontmatter {
         title
+      }
+      headings {
+        value
+        depth
+      }
+      fields {
+        slug
       }
     }
   }

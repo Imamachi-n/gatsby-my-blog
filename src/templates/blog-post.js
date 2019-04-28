@@ -18,22 +18,36 @@ export default ({ data }) => {
     <Layout>
       <div
         css={css`
-          ul,
-          ol {
-            margin-left: 1.44rem;
-            margin-bottom: 1.08rem;
-          }
-          li {
-            margin-bottom: 0.5rem;
-          }
-          code {
-            font-size: 13px;
-          }
+          display: flex;
+          align-items: stretch;
         `}
       >
-        <BlogTOC headerList={linkLists} blogLink={post.fields.slug} />
-        <h1>{post.frontmatter.title}</h1>
-        <div dangerouslySetInnerHTML={{ __html: post.html }} />
+        <div
+          css={css`
+            flex-grow: 1;
+            ul,
+            ol {
+              margin-left: 1.44rem;
+              margin-bottom: 1.08rem;
+            }
+            li {
+              margin-bottom: 0.5rem;
+            }
+            code {
+              font-size: 13px;
+            }
+          `}
+        >
+          <h1>{post.frontmatter.title}</h1>
+          <div dangerouslySetInnerHTML={{ __html: post.html }} />
+        </div>
+        <BlogTOC
+          css={css`
+            flex-grow: 1;
+          `}
+          headerList={linkLists}
+          blogLink={post.fields.slug}
+        />
       </div>
     </Layout>
   )

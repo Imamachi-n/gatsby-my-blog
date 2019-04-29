@@ -8,6 +8,7 @@ const BlogTOC = ({ headerList, blogLink }) => (
       css={css`
         margin-left: 1rem;
         margin-top: 1rem;
+        font-size: 14px;
         ul {
           list-style: none;
         }

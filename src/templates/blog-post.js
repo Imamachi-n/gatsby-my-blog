@@ -24,7 +24,8 @@ export default ({ data }) => {
       >
         <div
           css={css`
-            flex-grow: 1;
+            flex: 1;
+            width: 800px;
             ul,
             ol {
               margin-left: 1.44rem;
@@ -41,13 +42,13 @@ export default ({ data }) => {
           <h1>{post.frontmatter.title}</h1>
           <div dangerouslySetInnerHTML={{ __html: post.html }} />
         </div>
-        <BlogTOC
+        <div
           css={css`
-            flex-grow: 1;
+            width: 250px;
           `}
-          headerList={linkLists}
-          blogLink={post.fields.slug}
-        />
+        >
+          <BlogTOC headerList={linkLists} blogLink={post.fields.slug} />
+        </div>
       </div>
     </Layout>
   )

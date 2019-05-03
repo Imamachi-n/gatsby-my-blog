@@ -4,12 +4,55 @@ import { Link } from "gatsby"
 import { css } from "@emotion/core"
 import { rhythm } from "../../utils/typography"
 
+const backgroundColor = css`
+  background: #3e91c8;
+`
+const CharacterColor = css`
+  color: white;
+`
+
+const header = css`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 72px;
+  width: 100%;
+  max-width: 1080px;
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  padding: 0 15px;
+  color: white;
+`
+const headerH1 = css`
+  ${CharacterColor};
+  margin: 0;
+`
+const headerNav = css`
+  margin-left: auto;
+`
+const headerLink = css`
+  ${CharacterColor};
+  margin: 0;
+  padding: 0 10px;
+  display: inline-block;
+`
+
 const Header = ({ siteTitle }) => (
-  <header
-    css={css`
-      background: #3e91c8;
-    `}
-  >
+  <div css={backgroundColor}>
+    <header css={header}>
+      <h3 css={headerH1}>Private Blog</h3>
+      <nav css={headerNav}>
+        <Link to={`/about/`}>
+          <h4 css={headerLink}>About</h4>
+        </Link>
+        <Link to={`/about/`}>
+          <h4 css={headerLink}>Works</h4>
+        </Link>
+      </nav>
+    </header>
+
     <div
       css={css`
         margin: 0 auto;
@@ -31,38 +74,8 @@ const Header = ({ siteTitle }) => (
           {siteTitle}
         </h1>
       </Link>
-      <Link
-        to={`/about/`}
-        css={css`
-          float: right;
-        `}
-      >
-        <h3
-          css={css`
-            margin: 0px 10px 0px 10px;
-            color: white;
-          `}
-        >
-          Portfolio
-        </h3>
-      </Link>
-      <Link
-        to={`/about/`}
-        css={css`
-          float: right;
-        `}
-      >
-        <h3
-          css={css`
-            margin: 0px 10px 0px 10px;
-            color: white;
-          `}
-        >
-          About
-        </h3>
-      </Link>
     </div>
-  </header>
+  </div>
 )
 
 export default Header

@@ -1,5 +1,7 @@
 import React from "react"
+// import "minireset.css"
 import { css } from "@emotion/core"
+
 import Layout from "../components/layout/layout"
 import Bloglist from "../components/layout/blog-list"
 import SEO from "../components/seo"

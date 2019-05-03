@@ -3,6 +3,12 @@ title: Gatsbyでブログを作る
 date: '2019-04-11'
 ---
 
+## CSSリセット
+
+```bash
+yarn add minireset.css
+```
+
 ## Gatsby typographyプラグインを導入する
 
 `gatsby-plugin-typography`を使うことでフォントの設定をすることができます。

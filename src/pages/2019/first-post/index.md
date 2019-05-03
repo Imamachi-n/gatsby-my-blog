@@ -7,7 +7,7 @@ date: '2019-04-11'
 
 `gatsby-plugin-typography`を使うことでフォントの設定をすることができます。
 
-```javascript
+```bash
 yarn add gatsby-plugin-typography react-typography typography typography-theme-wordpress-2016
 ```
 
@@ -98,6 +98,41 @@ query HeadingQuery {
 ```
 
 ![GraphiQL_2019-04-16_21-40-28](GraphiQL_2019-04-16_21-40-28.png)
+
+## Metaタグを追加する
+
+### react-helmetを使う
+
+`gatsby-plugin-react-helmet`プラグインを導入します。
+
+```bash
+yarn add react-helmet gatsby-plugin-react-helmet
+```
+
+`gatsby-config.js`に次のコードを追加します。
+
+```javascript
+module.exports = {
+  plugins: [
+      `gatsby-plugin-react-helmet`,
+  ],
+}
+```
+
+`<Helmet>`タグを使って、Metaタグを組み込みます。以下の例では、ページのタイトルを設定しています。
+
+```js
+import { Helmet } from "react-helmet"
+
+export default () => {
+  <>
+    <Helmet>
+      <title>{post.frontmatter.title}</title>
+    </Helmet>
+    ...
+  </>
+}
+```
 
 ## MarkdownファイルをHTMLファイルに変換する
 
@@ -302,4 +337,24 @@ yarn add -D gatsby-remark-code-titles
     }
   }
 }
+```
+
+```js
+<ul>
+  {headerList.map(({ value, link, depth }, index) => (
+    <li
+    key={index}
+    css={css`
+        margin-left: ${(depth - 2) * 12}px;
+        &:hover {
+        border-radius: 5px;
+        background-color: lightyellow;
+        }
+    `}
+    >
+    <Link to={`${blogLink}#${link}`}>{value}</Link>
+    {/* <small>{depth}</small> */}
+    </li>
+  ))}
+</ul>
 ```

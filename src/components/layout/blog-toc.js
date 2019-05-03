@@ -22,8 +22,8 @@ const BlogTOC = ({ headerList, blogLink }) => (
         {headerList.map(({ value, link, depth }, index) => (
           <li
             key={index}
-            style={{ marginLeft: `${(depth - 2) * 12}px` }}
             css={css`
+              margin-left: ${(depth - 2) * 12}px;
               &:hover {
                 border-radius: 5px;
                 background-color: lightyellow;

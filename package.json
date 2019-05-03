@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "imamachi-n-blog",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "description": "My Blog written in Gatsby and React",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Naoto Imamachi <naoto.imamachi@gmail.com>",
   "dependencies": {
     "@emotion/core": "^10.0.10",
     "gatsby": "^2.3.16",

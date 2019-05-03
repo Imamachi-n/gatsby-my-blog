@@ -4,8 +4,10 @@ import { Link } from "gatsby"
 import { css } from "@emotion/core"
 import { rhythm } from "../../utils/typography"
 
-const backgroundColor = css`
+const headerBase = css`
   background: #3e91c8;
+  padding: ${rhythm(2)};
+  padding-top: ${rhythm(1.5)};
 `
 const CharacterColor = css`
   color: white;
@@ -38,9 +40,15 @@ const headerLink = css`
   padding: 0 10px;
   display: inline-block;
 `
+const title = css`
+  margin-bottom: 0;
+  font-style: normal;
+  color: white;
+  text-align: center;
+`
 
 const Header = ({ siteTitle }) => (
-  <div css={backgroundColor}>
+  <div css={headerBase}>
     <header css={header}>
       <h3 css={headerH1}>Private Blog</h3>
       <nav css={headerNav}>
@@ -53,26 +61,10 @@ const Header = ({ siteTitle }) => (
       </nav>
     </header>
 
-    <div
-      css={css`
-        margin: 0 auto;
-        max-width: 1080px;
-        padding: ${rhythm(2)};
-        padding-top: ${rhythm(1.5)};
-      `}
-    >
+    <div>
       <Link to={`/`}>
-        <h1
-          css={css`
-            margin-bottom: ${rhythm(2)};
-            display: inline-block;
-            font-style: normal;
-            color: white;
-            text-align: center;
-          `}
-        >
-          {siteTitle}
-        </h1>
+        <h1 css={title}>{siteTitle}</h1>
+        <p css={title}>JavaScript, React, Java, Spring Framework, etc...</p>
       </Link>
     </div>
   </div>

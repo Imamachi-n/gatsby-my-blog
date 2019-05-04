@@ -52,7 +52,7 @@ Wordpress2016.overrideThemeStyles = () => ({
   },
   a: {
     boxShadow: "none",
-    color: "#3f9ac8",
+    color: "#196989",
   },
   "a:hover": {
     opacity: "0.7",

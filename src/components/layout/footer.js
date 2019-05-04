@@ -5,7 +5,7 @@ import { rhythm } from "../../utils/typography"
 const Footer = () => (
   <footer
     css={css`
-      background: #3e91c8;
+      background: #196989;
     `}
   >
     <div

@@ -28,6 +28,7 @@ const mainStyle = css`
   max-width: 1080px;
   margin: 0 auto;
   padding: 0 15px;
+  padding-bottom: 15px;
 `
 
 const Layout = ({ children }) => (

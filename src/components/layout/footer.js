@@ -8,13 +8,23 @@ const backgroundColor = css`
 const characterColor = css`
   color: white;
 `
+const hover = css`
+  &:hover {
+    opacity: 0.7;
+    box-shadow: 0 1px 0 0 currentColor;
+  }
+`
 
 const footerBase = css`
   ${backgroundColor};
   padding: ${rhythm(1.2)};
   padding-top: ${rhythm(1.2)};
+  ${characterColor};
   a {
     ${characterColor};
+    font-weight: 800;
+    border-bottom: solid 1px currentColor;
+    ${hover};
   }
 `
 
@@ -28,7 +38,13 @@ const Footer = () => (
   <div css={footerBase}>
     <footer css={footer}>
       Copyright © {new Date().getFullYear()}.{` `}
-      <a href="https://github.com/Imamachi-n">Naoto Imamachi</a>
+      <a
+        href="https://github.com/Imamachi-n"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Naoto Imamachi
+      </a>
     </footer>
   </div>
 )

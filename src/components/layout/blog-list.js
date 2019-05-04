@@ -3,61 +3,37 @@ import { Link, StaticQuery, graphql } from "gatsby"
 import { rhythm } from "../../utils/typography"
 import { css } from "@emotion/core"
 
+const itemStyle = css`
+  &:hover {
+    border-radius: 5px;
+    background-color: aliceblue;
+  }
+`
+
+const linkStyle = css`
+  text-decoration: none;
+  color: inherit;
+`
+
+const titleStyle = css`
+  margin: ${rhythm(1 / 4)} 0;
+`
+const dateStyle = css`
+  color: #bbb;
+`
+
 const Bloglist = () => (
   <StaticQuery
-    query={graphql`
-      query MarkdownList {
-        allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
-          totalCount
-          edges {
-            node {
-              id
-              frontmatter {
-                title
-                date
-              }
-              fields {
-                slug
-              }
-              excerpt
-            }
-          }
-        }
-      }
-    `}
+    query={query}
     render={data => (
       <>
         {data.allMarkdownRemark.edges.map(({ node }) => (
           <div key={node.id}>
-            <div
-              css={css`
-                &:hover {
-                  border-radius: 5px;
-                  background-color: aliceblue;
-                }
-              `}
-            >
-              <Link
-                to={node.fields.slug}
-                css={css`
-                  text-decoration: none;
-                  color: inherit;
-                `}
-              >
-                <h3
-                  css={css`
-                    margin-top: ${rhythm(1 / 4)};
-                    margin-bottom: ${rhythm(1 / 4)};
-                  `}
-                >
+            <div css={itemStyle}>
+              <Link to={node.fields.slug} css={linkStyle}>
+                <h3 css={titleStyle}>
                   {node.frontmatter.title}{" "}
-                  <span
-                    css={css`
-                      color: #bbb;
-                    `}
-                  >
-                    — {node.frontmatter.date}
-                  </span>
+                  <span css={dateStyle}>— {node.frontmatter.date}</span>
                 </h3>
                 <p>{node.excerpt}</p>
               </Link>
@@ -71,3 +47,24 @@ const Bloglist = () => (
 )
 
 export default Bloglist
+
+const query = graphql`
+  query MarkdownList {
+    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+      totalCount
+      edges {
+        node {
+          id
+          frontmatter {
+            title
+            date
+          }
+          fields {
+            slug
+          }
+          excerpt
+        }
+      }
+    }
+  }
+`

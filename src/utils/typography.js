@@ -54,10 +54,10 @@ Wordpress2016.overrideThemeStyles = () => ({
     boxShadow: "none",
     color: "#196989",
   },
-  "a:hover": {
-    opacity: "0.7",
-    boxShadow: "0 1px 0 0 currentColor",
-  },
+  // "a:hover": {
+  //   opacity: "0.7",
+  //   boxShadow: "0 1px 0 0 currentColor",
+  // },
   "a.gatsby-resp-image-link": {
     boxShadow: "none",
   },

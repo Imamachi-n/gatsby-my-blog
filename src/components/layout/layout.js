@@ -10,6 +10,7 @@ import PropTypes from "prop-types"
 import { StaticQuery, graphql } from "gatsby"
 import { css } from "@emotion/core"
 
+// My custom components
 import Header from "./header"
 import Footer from "./footer"
 
@@ -24,10 +25,9 @@ const blogList = graphql`
 `
 
 const mainStyle = css`
-  margin: 0px auto;
   max-width: 1080px;
-  padding: 0px 1.0875rem 2.45rem;
-  padding-top: 0;
+  margin: 0 auto;
+  padding: 0 15px;
 `
 
 const Layout = ({ children }) => (

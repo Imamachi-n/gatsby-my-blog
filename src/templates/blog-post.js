@@ -42,6 +42,7 @@ export default ({ data }) => {
               }
               code {
                 font-size: 13px;
+                line-height: 13px;
               }
             `}
           >

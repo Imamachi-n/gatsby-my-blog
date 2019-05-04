@@ -10,6 +10,18 @@ const backgroundColor = css`
 const characterColor = css`
   color: white;
 `
+const hover = css`
+  &:hover {
+    color: #ffd97a;
+    opacity: 1;
+    box-shadow: 0 2px 0 0 currentColor;
+  }
+`
+const hoverTitle = css`
+  &:hover {
+    opacity: 0.7;
+  }
+`
 
 const headerBase = css`
   ${backgroundColor};
@@ -38,9 +50,10 @@ const header = css`
   }
   h4 {
     ${characterColor};
-    margin: 0;
-    padding: 0 10px;
+    margin: 0 10px;
+    padding: 0;
     display: inline-block;
+    ${hover};
   }
 `
 
@@ -52,12 +65,15 @@ const title = css`
     font-style: normal;
     text-align: center;
   }
+  h1 {
+    ${hoverTitle};
+  }
 `
 
 const Header = ({ siteTitle }) => (
   <div css={headerBase}>
     <header css={header}>
-      <h3>Private Blog</h3>
+      <h3>Tech blog</h3>
       <nav>
         <Link to={`/about/`}>
           <h4>About</h4>
@@ -71,7 +87,7 @@ const Header = ({ siteTitle }) => (
     <div css={title}>
       <Link to={`/`}>
         <h1>{siteTitle}</h1>
-        <p>JavaScript, React, Java, Spring Framework, etc...</p>
+        <p>JavaScript, React, Java, Spring Framework, AWS, etc...</p>
       </Link>
     </div>
   </div>

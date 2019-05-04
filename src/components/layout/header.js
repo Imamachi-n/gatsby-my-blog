@@ -4,12 +4,15 @@ import { Link } from "gatsby"
 import { css } from "@emotion/core"
 import { rhythm } from "../../utils/typography"
 
-const CharacterColor = css`
+const backgroundColor = css`
+  background: #196989;
+`
+const characterColor = css`
   color: white;
 `
 
 const headerBase = css`
-  background: #196989;
+  ${backgroundColor};
   padding: ${rhythm(2)};
   padding-top: ${rhythm(1.5)};
 `
@@ -26,16 +29,15 @@ const header = css`
   align-items: center;
   margin: 0 auto;
   padding: 0 15px;
-  color: white;
   h3 {
-    ${CharacterColor};
+    ${characterColor};
     margin: 0;
   }
   nav {
     margin-left: auto;
   }
   h4 {
-    ${CharacterColor};
+    ${characterColor};
     margin: 0;
     padding: 0 10px;
     display: inline-block;
@@ -45,7 +47,7 @@ const header = css`
 const title = css`
   h1,
   p {
-    ${CharacterColor};
+    ${characterColor};
     margin-bottom: 0;
     font-style: normal;
     text-align: center;

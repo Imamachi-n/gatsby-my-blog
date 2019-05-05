@@ -31,3 +31,9 @@ date: '2019-05-04'
 
 CSS line-heightの書き方３つを初心者向けに図で解説！
 <https://udemy.benesse.co.jp/development/web/line-height.html>
+
+## 文字詰めのテクニック
+
+文字詰めできるCSSのfont-feature-settingsが凄い！
+日本語フォントこそ指定したい自動カーニング
+<https://ics.media/entry/14087/>

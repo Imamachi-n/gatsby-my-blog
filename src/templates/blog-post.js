@@ -12,13 +12,78 @@ const mainStyle = css`
   display: flex;
 `
 const contentStyle = css`
-  flex: 1;
   width: 80%;
+  @media (max-width: 600px) {
+    width: 100%;
+  }
+`
+const indexStyle = css`
+  width: 20%;
+  @media (max-width: 600px) {
+    display: none;
+    width: 0%;
+  }
+`
+const dateStyle = css`
+  position: absolute;
+  top: 0;
+  padding-top: 10px;
+  margin: 2.5rem 0;
+
+  background: #196989;
+  border-radius: 50%;
+  color: white;
+  width: 80px;
+  height: 80px;
+  text-align: center;
+  font-size: 1.2rem;
+
+  span {
+    display: block;
+    border-top: 1px rgba(255, 255, 255, 0.5) solid;
+    font-size: 0.8rem;
+    padding-top: 3px;
+    margin 0 auto;
+    width: 60%;
+  }
+`
+const titleStyle = css`
   h1 {
-    margin: 0;
+    margin: 0 auto;
     margin-top: 30px;
-    margin-left: 120px;
+    margin-left: 100px;
     font-size: 40px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: 1.4;
+    font-feature-settings: "palt";
+  }
+  @media (max-width: 600px) {
+    h1 {
+      font-size: 2rem;
+    }
+  }
+`
+const markdownStyle = css`
+  h1 {
+    margin-top: 3.5rem;
+    text-transform: none;
+    margin-left: 0;
+    margin-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    margin-bottom: 1.75rem;
+    color: inherit;
+    font-weight: 900;
+    text-rendering: optimizeLegibility;
+    font-size: 1.8rem;
+    border-bottom: 1px solid #ddd;
+  }
+  h3 {
+    margin-top: 0px;
+    margin-bottom: 20px;
   }
   ul,
   ol {
@@ -31,32 +96,6 @@ const contentStyle = css`
   code {
     font-size: 12px;
     line-height: 12px;
-  }
-`
-const indexStyle = css`
-  width: 20%;
-`
-const dateStyle = css`
-  position: absolute;
-  top: 0;
-  padding-top: 10px;
-  margin: 20px 0;
-
-  background: #196989;
-  border-radius: 50%;
-  color: white;
-  width: 100px;
-  height: 100px;
-  text-align: center;
-  font-size: 1.625rem;
-
-  span {
-    display: block;
-    border-top: 1px rgba(255, 255, 255, 0.5) solid;
-    font-size: 1rem;
-    padding-top: 3px;
-    margin 0 auto;
-    width: 60%;
   }
 `
 
@@ -80,13 +119,20 @@ export default ({ data }) => {
       <Layout>
         <div css={mainStyle}>
           <div css={contentStyle}>
-            <div css={dateStyle}>
-              {post.frontmatter.date}
-              <span>{post.frontmatter.year}</span>
+            <div css={titleStyle}>
+              <div css={dateStyle}>
+                {post.frontmatter.date}
+                <span>{post.frontmatter.year}</span>
+              </div>
+              <h1>{post.frontmatter.title}</h1>
             </div>
-            <h1>{post.frontmatter.title}</h1>
-            <div dangerouslySetInnerHTML={{ __html: post.html }} />
+
+            <div
+              css={markdownStyle}
+              dangerouslySetInnerHTML={{ __html: post.html }}
+            />
           </div>
+
           <div css={indexStyle}>
             <BlogTOC headerList={linkLists} blogLink={post.fields.slug} />
           </div>

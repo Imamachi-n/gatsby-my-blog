@@ -1,5 +1,5 @@
 ---
-title: Gatsbyでブログを作る
+title: Gatsbyでブログを作る上で必要となる知識まとめ
 date: '2019-04-11'
 ---
 
@@ -363,4 +363,44 @@ yarn add -D gatsby-remark-code-titles
     </li>
   ))}
 </ul>
+```
+
+### スクロールに合わせて目次を追従させる
+
+```bash
+yarn add lodash
+```
+
+## GraphQLでブログの前後のページを取得
+
+```graphql
+{
+  allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+      totalCount
+      edges {
+        previous{
+          frontmatter{
+            title
+          }
+        }
+        next{
+          frontmatter{
+            title
+          }
+        }
+        node {
+          id
+          frontmatter {
+            title
+            date: date(formatString: "MM/DD")
+            year: date(formatString: "YYYY")
+          }
+          fields {
+            slug
+          }
+          excerpt
+        }
+      }
+    }
+}
 ```

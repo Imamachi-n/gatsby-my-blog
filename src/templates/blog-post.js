@@ -97,6 +97,13 @@ const markdownStyle = css`
     font-size: 12px;
     line-height: 12px;
   }
+  a {
+    &:hover {
+      color: #dda520;
+      opacity: 1;
+      box-shadow: 0 1px 0 0 currentColor;
+    }
+  }
 `
 
 export default ({ data }) => {

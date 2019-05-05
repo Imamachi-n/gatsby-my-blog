@@ -1,6 +1,9 @@
 ---
 title: Gatsbyでブログはじめました
 date: '2019-04-09'
+tags: 
+  - Gatsby
+  - Blog
 ---
 
 ## Gatsbyでブログをはじめてみる

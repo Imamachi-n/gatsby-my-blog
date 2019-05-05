@@ -66,8 +66,9 @@ exports.createPages = ({ graphql, actions }) => {
           // Data passed to context is available
           // in page queries as GraphQL variables.
           slug: node.fields.slug,
-          prev: index === 0 ? null : posts[index - 1],
-          next: index === result.length - 1 ? null : posts[index + 1],
+          // 新しい順なので、indexが若いほうが新しいブログ記事になる
+          next: index === 0 ? null : posts[index - 1],
+          prev: index === result.length - 1 ? null : posts[index + 1],
         },
       })
     })

@@ -14,6 +14,13 @@ const indexStyle = css`
     letter-spacing: 0; // 幅が狭いので詰め詰めにする
   }
 `
+const listStyle = css`
+  padding-left: 3px;
+  &:hover {
+    border-radius: 3px;
+    background-color: #ffd97a;
+  }
+`
 
 const BlogTOC = ({ headerList, blogLink }) => (
   <>
@@ -24,11 +31,7 @@ const BlogTOC = ({ headerList, blogLink }) => (
             key={index}
             css={css`
               margin-left: ${(depth - 2) * 12}px;
-              padding-left: 3px;
-              &:hover {
-                border-radius: 3px;
-                background-color: #ffd97a;
-              }
+              ${listStyle};
             `}
           >
             <Link to={`${blogLink}#${link}`}>{value}</Link>

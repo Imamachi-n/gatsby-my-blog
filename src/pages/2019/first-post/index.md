@@ -1,6 +1,9 @@
 ---
 title: Gatsbyでブログを作る上で必要となる知識まとめ
 date: '2019-04-11'
+tags: 
+  - Gatsby
+  - Blog
 ---
 
 ## CSSリセット
@@ -378,7 +381,7 @@ yarn add lodash
   allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
       totalCount
       edges {
-        previous{
+        prev{
           frontmatter{
             title
           }

@@ -1,6 +1,9 @@
 ---
 title: Gatsbyでブログを作った際に参考にしたもの
 date: '2019-05-04'
+tags: 
+  - Gatsby
+  - Blog
 ---
 
 # 概要
@@ -37,3 +40,8 @@ CSS line-heightの書き方３つを初心者向けに図で解説！
 文字詰めできるCSSのfont-feature-settingsが凄い！
 日本語フォントこそ指定したい自動カーニング
 <https://ics.media/entry/14087/>
+
+## Gatsbyを使ってブログを作る際に参考になったサイト
+
+ReactGO - Build an advanced blog using gatsby and react
+<https://reactgo.com/gatsby-advanced-blog-tutorial>

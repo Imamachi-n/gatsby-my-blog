@@ -1,5 +1,5 @@
 import React from "react"
-import { graphql } from "gatsby"
+import { Link, graphql } from "gatsby"
 import { css } from "@emotion/core"
 import { Helmet } from "react-helmet"
 import Layout from "../components/layout/layout"
@@ -74,12 +74,17 @@ const markdownStyle = css`
     padding-left: 0;
     padding-right: 0;
     padding-top: 0;
+    margin-top: 1.75rem;
     margin-bottom: 1.75rem;
     color: inherit;
     font-weight: 900;
     text-rendering: optimizeLegibility;
     font-size: 1.8rem;
     border-bottom: 1px solid #ddd;
+  }
+  h2 {
+    margin-top: 1.75rem;
+    margin-bottom: 1.75rem;
   }
   h3 {
     margin-top: 0px;
@@ -93,9 +98,19 @@ const markdownStyle = css`
   li {
     margin-bottom: 0.5rem;
   }
-  code {
-    font-size: 12px;
-    line-height: 12px;
+  code,
+  span {
+    font-size: 13px;
+    line-height: 1.5;
+    letter-spacing: 0;
+  }
+  .language-text {
+    border-radius: 3px;
+    background: whitesmoke;
+    color: currentColor;
+  }
+  pre {
+    border-radius: 3px;
   }
   a {
     &:hover {
@@ -105,9 +120,35 @@ const markdownStyle = css`
     }
   }
 `
+const tagStyle = css`
+  margin-top: 10px;
+  margin-left: 100px;
+  p {
+    color: white;
+    padding: 0 5px;
+    font-size: 13px;
+    margin-right: 10px;
+    display: inline-block;
+    border: solid 1.5px #196989;
+    border-radius: 3px;
+    background: #196989;
+  }
+`
+const prevStyle = css`
+  p {
+    float: right;
+  }
+`
+const nextStyle = css`
+  p {
+    float: left;
+  }
+`
 
-export default ({ data }) => {
-  const post = data.markdownRemark
+export default data => {
+  const post = data.data.currentRemarkPost
+  const { prev, next } = data.pageContext
+
   // A list for the table of blog contents
   const linkLists = post.headings.map(({ value, depth }) => {
     return {
@@ -134,10 +175,32 @@ export default ({ data }) => {
               <h1>{post.frontmatter.title}</h1>
             </div>
 
+            <div css={tagStyle}>
+              {post.frontmatter.tags.map(tag => (
+                <p>{tag}</p>
+              ))}
+            </div>
+
             <div
               css={markdownStyle}
               dangerouslySetInnerHTML={{ __html: post.html }}
             />
+
+            <div css={prevStyle}>
+              {prev && (
+                <Link to={prev.node.fields.slug}>
+                  <p>前のページへ</p>
+                </Link>
+              )}
+            </div>
+
+            <div css={nextStyle}>
+              {next && (
+                <Link to={next.node.fields.slug}>
+                  <p>次のページへ</p>
+                </Link>
+              )}
+            </div>
           </div>
 
           <div css={indexStyle}>
@@ -151,12 +214,13 @@ export default ({ data }) => {
 
 export const query = graphql`
   query($slug: String!) {
-    markdownRemark(fields: { slug: { eq: $slug } }) {
+    currentRemarkPost: markdownRemark(fields: { slug: { eq: $slug } }) {
       html
       frontmatter {
         title
         date: date(formatString: "MM/DD")
         year: date(formatString: "YYYY")
+        tags
       }
       headings {
         value

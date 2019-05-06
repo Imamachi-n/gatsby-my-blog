@@ -1,7 +1,7 @@
 ---
 title: Gatsbyでブログを作る上で必要となる知識まとめ
-date: '2019-04-11'
-tags: 
+date: "2019-04-11"
+tags:
   - Gatsby
   - Blog
   - Gatsby typography
@@ -11,13 +11,13 @@ tags:
   - gatsby-transformer-remark
 ---
 
-## CSSリセット
+## CSS リセット
 
 ```bash
 yarn add minireset.css
 ```
 
-## Gatsby typographyプラグインを導入する
+## Gatsby typography プラグインを導入する
 
 `gatsby-plugin-typography`を使うことでフォントの設定をすることができます。
 
@@ -27,11 +27,11 @@ yarn add gatsby-plugin-typography react-typography typography typography-theme-w
 
 ## emotion
 
-CSS-in-JSのライブラリ。JavaScriptのコードの中に、CSSの定義を埋め込む形式。高いパフォーマンス。コードの可読性は悪くなる？
+CSS-in-JS のライブラリ。JavaScript のコードの中に、CSS の定義を埋め込む形式。高いパフォーマンス。コードの可読性は悪くなる？
 
-Gatsby用のプラグインがあるので、導入する必要があります（逆に、プラグインを導入しないとEmotionのCSSの定義が適応されないので注意です）。  
+Gatsby 用のプラグインがあるので、導入する必要があります（逆に、プラグインを導入しないと Emotion の CSS の定義が適応されないので注意です）。  
 <https://www.gatsbyjs.org/docs/emotion/>  
-<https://emotion.sh/>  
+<https://emotion.sh/>
 
 ```bash
 yarn add gatsby-plugin-emotion @emotion/core
@@ -47,7 +47,7 @@ module.exports = {
 
 ## StaticQuery
 
-Gatsby v2から導入された新しいAPI。Pageコンポーネントで使われているGraphQLタグは、Pageコンポーネント以外では使用できませんでした。v2から導入されたStaticQueryを利用することで、Layoutコンポーネントのように、PageコンポーネントでないコンポーネントでもGraphQLが利用できるようになります。
+Gatsby v2 から導入された新しい API。Page コンポーネントで使われている GraphQL タグは、Page コンポーネント以外では使用できませんでした。v2 から導入された StaticQuery を利用することで、Layout コンポーネントのように、Page コンポーネントでないコンポーネントでも GraphQL が利用できるようになります。
 
 以下に具体例を示す。
 
@@ -85,16 +85,16 @@ module.exports = {
 }
 ```
 
-`gatsby develop`コマンドを実行後、`http://localhost:8000/___graphql`のURLにアクセスし、以下のクエリを実行してみます。
+`gatsby develop`コマンドを実行後、`http://localhost:8000/___graphql`の URL にアクセスし、以下のクエリを実行してみます。
 
 ```graphql
 query HeadingQuery {
-        site {
-          siteMetadata {
-            title
-          }
-        }
+  site {
+    siteMetadata {
+      title
     }
+  }
+}
 ```
 
 すると、以下の結果が得られるはずです。
@@ -113,9 +113,9 @@ query HeadingQuery {
 
 ![GraphiQL_2019-04-16_21-40-28](GraphiQL_2019-04-16_21-40-28.png)
 
-## Metaタグを追加する
+## Meta タグを追加する
 
-### react-helmetを使う
+### react-helmet を使う
 
 `gatsby-plugin-react-helmet`プラグインを導入します。
 
@@ -127,19 +127,17 @@ yarn add react-helmet gatsby-plugin-react-helmet
 
 ```javascript
 module.exports = {
-  plugins: [
-      `gatsby-plugin-react-helmet`,
-  ],
+  plugins: [`gatsby-plugin-react-helmet`],
 }
 ```
 
-`<Helmet>`タグを使って、Metaタグを組み込みます。以下の例では、ページのタイトルを設定しています。
+`<Helmet>`タグを使って、Meta タグを組み込みます。以下の例では、ページのタイトルを設定しています。
 
 ```js
 import { Helmet } from "react-helmet"
 
 export default () => {
-  <>
+  ;<>
     <Helmet>
       <title>{post.frontmatter.title}</title>
     </Helmet>
@@ -148,7 +146,7 @@ export default () => {
 }
 ```
 
-## MarkdownファイルをHTMLファイルに変換する
+## Markdown ファイルを HTML ファイルに変換する
 
 `gatsby-transformer-remark`プラグインを導入します。
 
@@ -160,13 +158,11 @@ yarn add gatsby-transformer-remark
 
 ```javascript
 module.exports = {
-  plugins: [
-      `gatsby-transformer-remark`,
-  ],
+  plugins: [`gatsby-transformer-remark`],
 }
 ```
 
-プラグインを導入することで、GraqhQLからMarkdownファイルを検索して調べる事ができるようになります。
+プラグインを導入することで、GraqhQL から Markdown ファイルを検索して調べる事ができるようになります。
 
 ```graphql
 export const query = graphql`
@@ -191,11 +187,10 @@ export const query = graphql`
 `
 ```
 
-## Markdownファイル内のImageファイルを表示する
+## Markdown ファイル内の Image ファイルを表示する
 
-Markdownファイル内で指定された画像ファイルは、`gatsby-transformer-remark`プラグインだけでは表示されません。
+Markdown ファイル内で指定された画像ファイルは、`gatsby-transformer-remark`プラグインだけでは表示されません。
 `gatsby-remark-images`プラグインを導入することで読み込めるようにします。
-
 <https://www.gatsbyjs.org/packages/gatsby-remark-images/>
 
 まず、ライブラリをインストールします。
@@ -207,10 +202,10 @@ yarn add gatsby-remark-images gatsby-plugin-sharp
 `gatsby-config.js`ファイル内で以下を設定します。
 `maxWidth`は表示する画像ファイルの最大幅を指定します。
 
-ちなみに対応しているImageファイルのフォーマットは
+ちなみに対応している Image ファイルのフォーマットは
 
-* JPEG
-* PNG
+- JPEG
+- PNG
 
 だけなので、注意です。
 
@@ -237,10 +232,9 @@ plugins: [
 ]
 ```
 
-## Markdownファイルの見出しを生成する
+## Markdown ファイルの見出しを生成する
 
-prismjsの後に宣言する必要がある。
-
+prismjs の後に宣言する必要がある。  
 <https://www.gatsbyjs.org/packages/gatsby-remark-autolink-headers/>
 
 ```bash
@@ -249,16 +243,13 @@ yarn add gatsby-remark-autolink-headers
 
 ## シンタックスハイライトをつける
 
-Markdownファイルのソースコード部分に、シンタックスハイライトをつけることができます。
-
+Markdown ファイルのソースコード部分に、シンタックスハイライトをつけることができます。  
 <https://www.gatsbyjs.org/packages/gatsby-remark-prismjs/>
 
-まずは、こちらのPrismJSの公式サイトから、プレビューを見て好みのテーマを探しましょう。
-
+まずは、こちらの PrismJS の公式サイトから、プレビューを見て好みのテーマを探しましょう。  
 <https://prismjs.com/>
 
-続いて、好きなテーマを導入してみましょう。以下で、各テーマのCSSファイル名がわかるので確認しておきます。
-
+続いて、好きなテーマを導入してみましょう。以下で、各テーマの CSS ファイル名がわかるので確認しておきます。  
 <https://github.com/PrismJS/prism/tree/1d5047df37aacc900f8270b1c6215028f6988eb1/themes>
 
 ```bash
@@ -281,17 +272,17 @@ yarn add -D gatsby-remark-code-titles
 
 ### ブログの目次を作る
 
-`value`が目次、`depth`は見出しの大きさ（H1, H2, H3とか）のこと。
+`value`が目次、`depth`は見出しの大きさ（H1, H2, H3 とか）のこと。
 
 ```graphql
 {
   markdownRemark(fields: { slug: { eq: "/2019/first-post/" } }) {
     id
-    headings{
+    headings {
       value
       depth
     }
-    fields{
+    fields {
       slug
     }
   }
@@ -357,17 +348,17 @@ yarn add -D gatsby-remark-code-titles
 <ul>
   {headerList.map(({ value, link, depth }, index) => (
     <li
-    key={index}
-    css={css`
+      key={index}
+      css={css`
         margin-left: ${(depth - 2) * 12}px;
         &:hover {
-        border-radius: 5px;
-        background-color: lightyellow;
+          border-radius: 5px;
+          background-color: lightyellow;
         }
-    `}
+      `}
     >
-    <Link to={`${blogLink}#${link}`}>{value}</Link>
-    {/* <small>{depth}</small> */}
+      <Link to={`${blogLink}#${link}`}>{value}</Link>
+      {/* <small>{depth}</small> */}
     </li>
   ))}
 </ul>
@@ -379,42 +370,42 @@ yarn add -D gatsby-remark-code-titles
 yarn add lodash
 ```
 
-## GraphQLでブログの前後のページを取得
+## GraphQL でブログの前後のページを取得
 
 ```graphql
 {
   allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
-      totalCount
-      edges {
-        prev{
-          frontmatter{
-            title
-          }
-        }
-        next{
-          frontmatter{
-            title
-          }
-        }
-        node {
-          id
-          frontmatter {
-            title
-            date: date(formatString: "MM/DD")
-            year: date(formatString: "YYYY")
-            tagsfta
-          }
-          fields {
-            slug
-          }
-          excerpt
+    totalCount
+    edges {
+      prev {
+        frontmatter {
+          title
         }
       }
+      next {
+        frontmatter {
+          title
+        }
+      }
+      node {
+        id
+        frontmatter {
+          title
+          date: date(formatString: "MM/DD")
+          year: date(formatString: "YYYY")
+          tagsfta
+        }
+        fields {
+          slug
+        }
+        excerpt
+      }
     }
+  }
 }
 ```
 
-Arrayオブジェクトからフィルタリングする場合
+Array オブジェクトからフィルタリングする場合
 
 ```graphql
  allMarkdownRemark(
@@ -433,4 +424,16 @@ Arrayオブジェクトからフィルタリングする場合
         }
       }
   }
+```
+
+## SNS のシェアボタンを用意する
+
+```bash
+yarn add react-share
+```
+
+## FontAwesome を使う
+
+```bash
+yarn add @fortawesome/fontawesome-svg-core @fortawesome/free-solid-svg-icons @fortawesome/react-fontawesome @fortawesome/free-brands-svg-icons
 ```

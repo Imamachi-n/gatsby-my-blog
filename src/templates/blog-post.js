@@ -5,6 +5,7 @@ import { Helmet } from "react-helmet"
 
 import Layout from "../components/layout/layout"
 import BlogTOC from "../components/layout/blog-toc"
+import SNSShare from "../components/SNSShare/index"
 
 const mainStyle = css`
   position: relative;
@@ -12,8 +13,9 @@ const mainStyle = css`
   margin-bottom: 10px;
   display: flex;
 `
+
 const contentStyle = css`
-  width: 80%;
+  width: 75%;
   @media (max-width: 600px) {
     width: 100%;
   }
@@ -141,6 +143,9 @@ const tagStyle = css`
     }
   }
 `
+const eachTagStyle = css`
+  display: inline-block;
+`
 const prevStyle = css`
   p {
     float: right;
@@ -152,9 +157,9 @@ const nextStyle = css`
   }
 `
 
-export default data => {
-  const post = data.data.currentRemarkPost
-  const { prev, next } = data.pageContext
+export default props => {
+  const post = props.data.currentRemarkPost
+  const { prev, next } = props.pageContext
 
   // A list for the table of blog contents
   const tocLinks = post.headings.map(({ value, depth }) => {
@@ -181,6 +186,13 @@ export default data => {
 
       <Layout>
         <div css={mainStyle}>
+          {/* Left: Share button column */}
+          <SNSShare
+            title={post.frontmatter.title}
+            link={prev.node.fields.slug}
+          />
+
+          {/* Center: Content column */}
           <div css={contentStyle}>
             <div css={titleStyle}>
               <div css={dateStyle}>
@@ -191,10 +203,12 @@ export default data => {
             </div>
 
             <div css={tagStyle}>
-              {tagLinks.map(tag => (
-                <Link to={tag.link}>
-                  <p>{tag.name}</p>
-                </Link>
+              {tagLinks.map((tag, index) => (
+                <div key={index} css={eachTagStyle}>
+                  <Link to={tag.link}>
+                    <p>{tag.name}</p>
+                  </Link>
+                </div>
               ))}
             </div>
 
@@ -220,6 +234,7 @@ export default data => {
             </div>
           </div>
 
+          {/* Right: Index column */}
           <div css={indexStyle}>
             <BlogTOC headerList={tocLinks} blogLink={post.fields.slug} />
           </div>

@@ -7,7 +7,6 @@
 // You can delete this file if you're not using it
 const path = require(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
-const _ = require("lodash")
 
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions
@@ -81,7 +80,7 @@ exports.createPages = ({ graphql, actions }) => {
     // Tag pageの動的生成
     allTags.forEach((tag, index) => {
       createPage({
-        path: `/tags/${_.kebabCase(tag)}/`,
+        path: `/tags/${tag.replace(" ", "-").toLowerCase()}/`,
         component: path.resolve(`./src/templates/blog-tag.js`),
         context: {
           tag: tag,

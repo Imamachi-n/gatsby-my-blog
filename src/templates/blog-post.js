@@ -2,6 +2,7 @@ import React from "react"
 import { Link, graphql } from "gatsby"
 import { css } from "@emotion/core"
 import { Helmet } from "react-helmet"
+
 import Layout from "../components/layout/layout"
 import BlogTOC from "../components/layout/blog-toc"
 
@@ -19,6 +20,7 @@ const contentStyle = css`
 `
 const indexStyle = css`
   width: 20%;
+  margin-top: 15px;
   @media (max-width: 600px) {
     display: none;
     width: 0%;
@@ -52,7 +54,7 @@ const titleStyle = css`
     margin: 0 auto;
     margin-top: 30px;
     margin-left: 100px;
-    font-size: 40px;
+    font-size: 2.2rem;
     font-weight: 700;
     letter-spacing: 0;
     line-height: 1.4;
@@ -127,11 +129,16 @@ const tagStyle = css`
     color: white;
     padding: 0 5px;
     font-size: 13px;
+    font-weight: 700;
     margin-right: 10px;
+    margin-bottom: 6px;
     display: inline-block;
     border: solid 1.5px #196989;
     border-radius: 3px;
     background: #196989;
+    &:hover {
+      color: #ffd97a;
+    }
   }
 `
 const prevStyle = css`
@@ -150,11 +157,19 @@ export default data => {
   const { prev, next } = data.pageContext
 
   // A list for the table of blog contents
-  const linkLists = post.headings.map(({ value, depth }) => {
+  const tocLinks = post.headings.map(({ value, depth }) => {
     return {
       value: value,
       link: value.replace(" ", "-").toLowerCase(),
       depth: depth,
+    }
+  })
+
+  // A list for the tags
+  const tagLinks = post.frontmatter.tags.map(tag => {
+    return {
+      name: tag,
+      link: "/tags/" + tag.replace(" ", "-").toLowerCase(),
     }
   })
 
@@ -176,8 +191,10 @@ export default data => {
             </div>
 
             <div css={tagStyle}>
-              {post.frontmatter.tags.map(tag => (
-                <p>{tag}</p>
+              {tagLinks.map(tag => (
+                <Link to={tag.link}>
+                  <p>{tag.name}</p>
+                </Link>
               ))}
             </div>
 
@@ -204,7 +221,7 @@ export default data => {
           </div>
 
           <div css={indexStyle}>
-            <BlogTOC headerList={linkLists} blogLink={post.fields.slug} />
+            <BlogTOC headerList={tocLinks} blogLink={post.fields.slug} />
           </div>
         </div>
       </Layout>

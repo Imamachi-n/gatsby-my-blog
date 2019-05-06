@@ -4,6 +4,11 @@ date: '2019-04-11'
 tags: 
   - Gatsby
   - Blog
+  - Gatsby typography
+  - emotion
+  - StaticQuery
+  - gatsby-plugin-react-helmet
+  - gatsby-transformer-remark
 ---
 
 ## CSSリセット
@@ -397,6 +402,7 @@ yarn add lodash
             title
             date: date(formatString: "MM/DD")
             year: date(formatString: "YYYY")
+            tagsfta
           }
           fields {
             slug
@@ -406,4 +412,25 @@ yarn add lodash
       }
     }
 }
+```
+
+Arrayオブジェクトからフィルタリングする場合
+
+```graphql
+ allMarkdownRemark(
+      limit: 1000,
+      filter: {frontmatter: { tags: { in: ["emotion"] } } },
+      sort: { fields: [frontmatter___date], order: DESC }
+    ) {
+      edges {
+        node {
+          fields {
+            slug
+          }
+          frontmatter{
+            tags
+          }
+        }
+      }
+  }
 ```

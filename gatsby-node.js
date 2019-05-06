@@ -7,6 +7,7 @@
 // You can delete this file if you're not using it
 const path = require(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
+const _ = require("lodash")
 
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions
@@ -47,6 +48,9 @@ exports.createPages = ({ graphql, actions }) => {
             fields {
               slug
             }
+            frontmatter {
+              tags
+            }
           }
         }
       }
@@ -57,7 +61,35 @@ exports.createPages = ({ graphql, actions }) => {
       return reject(result.errors)
     }
 
+    // すべてのPosts情報
     const posts = result.data.allMarkdownRemark.edges
+
+    // 重複のないすべてのTagの抽出
+    const allTags = posts
+      .map(({ node }) => {
+        return node.frontmatter.tags
+      })
+      .reduce(
+        (accArray, currentArray) => (accArray = accArray.concat(currentArray)),
+        []
+      )
+      .filter((tag, index, self) => {
+        return self.indexOf(tag) === index
+      })
+    // console.log(allTags)
+
+    // Tag pageの動的生成
+    allTags.forEach((tag, index) => {
+      createPage({
+        path: `/tags/${_.kebabCase(tag)}/`,
+        component: path.resolve(`./src/templates/blog-tag.js`),
+        context: {
+          tag: tag,
+        },
+      })
+    })
+
+    // Markdown -> HTML pageの動的生成
     posts.forEach(({ node }, index) => {
       createPage({
         path: node.fields.slug,

@@ -1,15 +1,75 @@
-// import React from "react"
-// import { graphql } from "gatsby"
-// import { css } from "@emotion/core"
+import React from "react"
+import { graphql } from "gatsby"
+import { Helmet } from "react-helmet"
+import { css } from "@emotion/core"
 
-// export default ({}) => {}
+import Layout from "../components/layout/layout"
+import Itemlist from "../components/layout/item-list"
 
-// export const query = graphql`
-//   query($tag: String!) {
-//     markdownRemark(fields: { slug: { eq: $slug } }) {
-//       frontmatter {
-//         tags
-//       }
-//     }
-//   }
-// `
+const characterColor = css`
+  color: #196989;
+`
+
+const titleStyle = css`
+  margin: 20px 0;
+  padding: 0 10px 0 20px;
+  display: inline-block;
+  border-left: solid 15px currentColor;
+  border-bottom: solid 3px currentColor;
+  line-height: 1.5;
+  ${characterColor};
+`
+
+export default props => {
+  const posts = props.data.filteredRemarkPosts
+
+  return (
+    <>
+      <Helmet>
+        <title>{`${props.data.site.siteMetadata.title} | ${
+          props.pageContext.tag
+        }`}</title>
+      </Helmet>
+
+      <Layout>
+        <h2 css={titleStyle}>
+          {props.pageContext.tag}に関連するブログ記事 : {posts.totalCount}件
+        </h2>
+        <Itemlist posts={posts.edges} />
+      </Layout>
+    </>
+  )
+}
+
+export const query = graphql`
+  query($tag: String!) {
+    site {
+      siteMetadata {
+        title
+      }
+    }
+
+    filteredRemarkPosts: allMarkdownRemark(
+      limit: 1000
+      filter: { frontmatter: { tags: { in: [$tag] } } }
+      sort: { fields: [frontmatter___date], order: DESC }
+    ) {
+      totalCount
+      edges {
+        node {
+          id
+          frontmatter {
+            title
+            date: date(formatString: "MM/DD")
+            year: date(formatString: "YYYY")
+            tags
+          }
+          fields {
+            slug
+          }
+          excerpt
+        }
+      }
+    }
+  }
+`

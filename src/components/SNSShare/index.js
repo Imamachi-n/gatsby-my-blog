@@ -13,19 +13,29 @@ import {
 // import { faGetPocket } from "@fortawesome/free-brands-svg-icons"
 
 const ulStyle = css`
-  width: 5%;
-  margin-top: 40px;
-
-  @media (max-width: 600px) {
-    display: none;
-    width: 0%;
-  }
-
   ul {
     margin: 0;
     padding: 0;
     list-style: none;
     min-height: 50px;
+    }
+  }
+  li {
+    display: inline-block;
+    // margin: 0 8px;
+    
+    svg{
+      opacity: 0.5;
+    }
+
+    &:first-of-type {
+      margin-left: 0;
+    }
+    
+    & svg:hover {
+      cursor: pointer;
+      opacity: 1;
+    }
   }
 `
 
@@ -52,21 +62,21 @@ const SNSShare = ({ title, link }) => {
         {/* Fackbook */}
         <li>
           <FacebookShareButton url={link}>
-            <FacebookIcon size={32} round />
+            <FacebookIcon size={35} round />
           </FacebookShareButton>
         </li>
 
         {/* Twitter */}
         <li>
           <TwitterShareButton title={title} url={link}>
-            <TwitterIcon size={32} round />
+            <TwitterIcon size={35} round />
           </TwitterShareButton>
         </li>
 
         {/* LinkedIn */}
         <li>
           <LinkedinShareButton url={link}>
-            <LinkedinIcon title={title} size={32} round />
+            <LinkedinIcon title={title} size={35} round />
           </LinkedinShareButton>
         </li>
 

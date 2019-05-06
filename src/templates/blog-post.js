@@ -22,14 +22,30 @@ const mainStyle = css`
 const contentStyle = css`
   width: 75%;
   // width: 80%;
-  @media (max-width: 600px) {
+  @media (max-width: 700px) {
     width: 100%;
+  }
+`
+const shareStyle = css`
+  width: 5%;
+  margin-top: 40px;
+  position: sticky;
+  height: 200px;
+  top: 30px;
+
+  @media (max-width: 700px) {
+    display: none;
+    width: 0%;
   }
 `
 const indexStyle = css`
   width: 20%;
   margin-top: 15px;
-  @media (max-width: 600px) {
+  // position: sticky;
+  // height: 25vh;
+  // top: 8px;
+
+  @media (max-width: 700px) {
     display: none;
     width: 0%;
   }
@@ -158,6 +174,7 @@ const nextStyle = css`
 
 export default props => {
   const post = props.data.currentRemarkPost
+  const baseUrl = props.data.site.siteMetadata.url
   const { prev, next } = props.pageContext
 
   // A list for the table of blog contents
@@ -186,10 +203,16 @@ export default props => {
       <Layout>
         <div css={mainStyle}>
           {/* Left: Share button column */}
-          <SNSShare title={post.frontmatter.title} link={post.fields.slug} />
+          <div css={shareStyle}>
+            <SNSShare
+              title={post.frontmatter.title}
+              link={`${baseUrl}${post.fields.slug}`}
+            />
+          </div>
 
           {/* Center: Content column */}
           <div css={contentStyle}>
+            {/* Title */}
             <div css={titleStyle}>
               <div css={dateStyle}>
                 {post.frontmatter.date}
@@ -198,6 +221,7 @@ export default props => {
               <h1>{post.frontmatter.title}</h1>
             </div>
 
+            {/* Tag */}
             <div css={tagStyle}>
               {tagLinks.map((tag, index) => (
                 <div key={index} css={eachTagStyle}>
@@ -208,11 +232,13 @@ export default props => {
               ))}
             </div>
 
+            {/* Blog main */}
             <div
               css={markdownStyle}
               dangerouslySetInnerHTML={{ __html: post.html }}
             />
 
+            {/* Prev/Next */}
             <div css={prevStyle}>
               {prev && (
                 <Link to={prev.node.fields.slug}>
@@ -242,6 +268,13 @@ export default props => {
 
 export const query = graphql`
   query($slug: String!) {
+    site {
+      siteMetadata {
+        title
+        url
+      }
+    }
+
     currentRemarkPost: markdownRemark(fields: { slug: { eq: $slug } }) {
       html
       frontmatter {

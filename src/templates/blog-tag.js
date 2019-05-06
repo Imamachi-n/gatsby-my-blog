@@ -10,6 +10,13 @@ const characterColor = css`
   color: #196989;
 `
 
+const mainStyle = css`
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 15px;
+  padding-bottom: 15px;
+`
+
 const titleStyle = css`
   margin: 20px 0;
   padding: 0 10px 0 20px;
@@ -32,10 +39,12 @@ export default props => {
       </Helmet>
 
       <Layout>
-        <h2 css={titleStyle}>
-          {props.pageContext.tag}に関連するブログ記事 : {posts.totalCount}件
-        </h2>
-        <Itemlist posts={posts.edges} />
+        <div css={mainStyle}>
+          <h2 css={titleStyle}>
+            {props.pageContext.tag}に関連するブログ記事 : {posts.totalCount}件
+          </h2>
+          <Itemlist posts={posts.edges} />
+        </div>
       </Layout>
     </>
   )

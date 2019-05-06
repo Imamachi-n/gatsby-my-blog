@@ -41,9 +41,10 @@ const shareStyle = css`
 const indexStyle = css`
   width: 20%;
   margin-top: 15px;
-  // position: sticky;
-  // height: 25vh;
-  // top: 8px;
+  position: sticky;
+  height: 100%;
+  top: 8px;
+  overflow-y: scroll;
 
   @media (max-width: 700px) {
     display: none;

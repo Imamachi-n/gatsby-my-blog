@@ -19,14 +19,19 @@ const titleStyle = css`
   line-height: 1.5;
   ${characterColor};
 `
+const mainStyle = css`
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 15px;
+  padding-bottom: 15px;
+`
 
 export default () => {
   return (
     <Layout>
-      <div>
+      <div css={mainStyle}>
         <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
-        <h1 css={titleStyle}>Blog Top</h1>
-        <Bloglist />
+        <h1 css={titleStyle}> Blog Top </h1> <Bloglist />
       </div>
     </Layout>
   )

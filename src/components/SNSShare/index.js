@@ -9,15 +9,18 @@ import {
   TwitterShareButton,
   TwitterIcon,
 } from "react-share"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faGetPocket } from "@fortawesome/free-brands-svg-icons"
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+// import { faGetPocket } from "@fortawesome/free-brands-svg-icons"
 
 const ulStyle = css`
   width: 5%;
+  margin-top: 40px;
+
   @media (max-width: 600px) {
     display: none;
     width: 0%;
   }
+
   ul {
     margin: 0;
     padding: 0;
@@ -27,6 +30,7 @@ const ulStyle = css`
 `
 
 const SNSShare = ({ title, link }) => {
+  // link = "https://github.com/Imamachi-n"
   return (
     <div css={ulStyle}>
       <ul>
@@ -47,37 +51,27 @@ const SNSShare = ({ title, link }) => {
 
         {/* Fackbook */}
         <li>
-          <FacebookShareButton
-            additionalProps={{ "aria-label": "share_facebook" }}
-            url={link}
-          >
+          <FacebookShareButton url={link}>
             <FacebookIcon size={32} round />
           </FacebookShareButton>
         </li>
 
         {/* Twitter */}
         <li>
-          <TwitterShareButton
-            additionalProps={{ "aria-label": "share_twitter" }}
-            title={title}
-            url={link}
-          >
+          <TwitterShareButton title={title} url={link}>
             <TwitterIcon size={32} round />
           </TwitterShareButton>
         </li>
 
         {/* LinkedIn */}
         <li>
-          <LinkedinShareButton
-            additionalProps={{ "aria-label": "share_linkedin" }}
-            url={link}
-          >
+          <LinkedinShareButton url={link}>
             <LinkedinIcon title={title} size={32} round />
           </LinkedinShareButton>
         </li>
 
         {/* Pocket */}
-        <li>
+        {/* <li>
           <a
             aria-label="share_pocket"
             href={`https://getpocket.com/edit?url=${link}&title=${title}`}
@@ -85,26 +79,7 @@ const SNSShare = ({ title, link }) => {
           >
             <FontAwesomeIcon color="gray" icon={faGetPocket} />
           </a>
-        </li>
-
-        {/* Hatena */}
-        {/* <li>
-        <a
-          aria-label="share_hatena-bookmark"
-          href="http://b.hatena.ne.jp/entry/"
-          data-hatena-bookmark-layout="touch-counter"
-          title="このエントリーをはてなブックマークに追加"
-          style={{ boxShadow: "none" }}
-        >
-          <img
-            src="https://b.st-hatena.com/images/entry-button/button-only@2x.png"
-            alt="このエントリーをはてなブックマークに追加"
-            width="24"
-            height="24"
-            style={{ border: "none" }}
-          />
-        </a>
-      </li> */}
+        </li> */}
       </ul>
     </div>
   )

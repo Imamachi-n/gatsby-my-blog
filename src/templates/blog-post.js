@@ -8,6 +8,11 @@ import BlogTOC from "../components/layout/blog-toc"
 import SNSShare from "../components/SNSShare/index"
 
 const mainStyle = css`
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 15px;
+  padding-bottom: 15px;
+
   position: relative;
   padding: 4px;
   margin-bottom: 10px;
@@ -16,6 +21,7 @@ const mainStyle = css`
 
 const contentStyle = css`
   width: 75%;
+  // width: 80%;
   @media (max-width: 600px) {
     width: 100%;
   }
@@ -70,16 +76,9 @@ const titleStyle = css`
 `
 const markdownStyle = css`
   h1 {
-    margin-top: 3.5rem;
     text-transform: none;
-    margin-left: 0;
-    margin-right: 0;
-    padding-bottom: 0;
-    padding-left: 0;
-    padding-right: 0;
-    padding-top: 0;
-    margin-top: 1.75rem;
-    margin-bottom: 1.75rem;
+    margin: 1.75rem 0;
+    padding: 0;
     color: inherit;
     font-weight: 900;
     text-rendering: optimizeLegibility;
@@ -187,10 +186,7 @@ export default props => {
       <Layout>
         <div css={mainStyle}>
           {/* Left: Share button column */}
-          <SNSShare
-            title={post.frontmatter.title}
-            link={prev.node.fields.slug}
-          />
+          <SNSShare title={post.frontmatter.title} link={post.fields.slug} />
 
           {/* Center: Content column */}
           <div css={contentStyle}>

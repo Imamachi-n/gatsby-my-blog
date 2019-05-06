@@ -432,6 +432,8 @@ Array オブジェクトからフィルタリングする場合
 yarn add react-share
 ```
 
+<https://swas.io/blog/social-share-button-for-gatsby-blog-pages/>
+
 ## FontAwesome を使う
 
 ```bash

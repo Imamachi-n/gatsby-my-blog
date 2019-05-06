@@ -30,7 +30,7 @@ const shareStyle = css`
   width: 5%;
   margin-top: 40px;
   position: sticky;
-  height: 200px;
+  height: 100%;
   top: 30px;
 
   @media (max-width: 700px) {
@@ -43,7 +43,7 @@ const indexStyle = css`
   margin-top: 15px;
   position: sticky;
   height: 100%;
-  top: 8px;
+  top: 7px;
   overflow-y: scroll;
 
   @media (max-width: 700px) {
@@ -165,11 +165,21 @@ const eachTagStyle = css`
 const prevStyle = css`
   p {
     float: right;
+    &:hover {
+      color: #dda520;
+      opacity: 0.8;
+      border-bottom: solid 1px currentColor;
+    }
   }
 `
 const nextStyle = css`
   p {
     float: left;
+    &:hover {
+      color: #dda520;
+      opacity: 0.8;
+      border-bottom: solid 1px currentColor;
+    }
   }
 `
 

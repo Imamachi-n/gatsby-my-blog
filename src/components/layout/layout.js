@@ -8,7 +8,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { StaticQuery, graphql } from "gatsby"
-// import { css } from "@emotion/core"
+import { css } from "@emotion/core"
 
 // My custom components
 import Header from "./header"
@@ -38,7 +38,13 @@ const Layout = ({ children }) => (
       <>
         <Header siteTitle={data.site.siteMetadata.title} />
         {/* <div css={mainStyle}> */}
-        <main>{children}</main>
+        <main
+          css={css`
+            min-height: calc(60vh);
+          `}
+        >
+          {children}
+        </main>
         {/* </div> */}
         <Footer />
       </>

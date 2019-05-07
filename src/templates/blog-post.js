@@ -136,7 +136,7 @@ const markdownStyle = css`
     &:hover {
       color: #dda520;
       opacity: 1;
-      box-shadow: 0 1px 0 0 currentColor;
+      // box-shadow: 0 1px 0 0 currentColor;
     }
   }
 `
@@ -165,20 +165,20 @@ const eachTagStyle = css`
 const prevStyle = css`
   p {
     float: right;
+    border-bottom: solid 1px currentColor;
     &:hover {
       color: #dda520;
       opacity: 0.8;
-      border-bottom: solid 1px currentColor;
     }
   }
 `
 const nextStyle = css`
   p {
     float: left;
+    border-bottom: solid 1px currentColor;
     &:hover {
       color: #dda520;
       opacity: 0.8;
-      border-bottom: solid 1px currentColor;
     }
   }
 `

@@ -48,6 +48,7 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
+    "deploy": "aws s3 sync public s3://www.xxxx.com --acl public-read --delete",
     "develop": "gatsby develop",
     "format": "prettier --write src/**/*.{js,jsx}",
     "start": "npm run develop",

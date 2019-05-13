@@ -35,6 +35,27 @@ AWS 以外でドメインは取得しても構わない（AWS だとちょっと
 
 Amazon が発行する SSL/TLS 証明書の更新を管理します。
 
+![AWS-Certificate-Manager-1](AWS-Certificate-Manager-1.png)
+
+![AWS-Certificate-Manager-2](AWS-Certificate-Manager-2.png)
+
+![AWS-Certificate-Manager-3](AWS-Certificate-Manager-3.png)
+
+![AWS-Certificate-Manager-4](AWS-Certificate-Manager-4.png)
+
+![AWS-Certificate-Manager-5](AWS-Certificate-Manager-5.png)
+
+![AWS-Certificate-Manager-6](AWS-Certificate-Manager-6.png)
+
+![AWS-Certificate-Manager-7](AWS-Certificate-Manager-7.png)
+
+![AWS-Certificate-Manager-8](AWS-Certificate-Manager-8.png)
+
+![AWS-Certificate-Manager-9](AWS-Certificate-Manager-9.png)
+
+Certificate Manager (ACM) が DNS の検証をサポートしました  
+<https://dev.classmethod.jp/cloud/aws/certificate-manager-dns-validation-support/>
+
 ## S3
 
 ウェブサイトアクセスに必要なアクセス許可  

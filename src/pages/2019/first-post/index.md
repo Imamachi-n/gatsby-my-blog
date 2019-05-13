@@ -45,6 +45,29 @@ module.exports = {
 }
 ```
 
+## gatsby-remark-images
+
+`gatsby-config.js`を編集する。  
+`maxWidth`を指定することで、最大の幅を決めることができる。
+
+```js
+{
+  resolve: `gatsby-transformer-remark`,
+  options: {
+    plugins: [{
+        resolve: `gatsby-remark-images`,
+        options: {
+          maxWidth: 800,
+        },
+      },
+    ],
+  },
+},
+```
+
+gatsby-remark-images
+<https://www.gatsbyjs.org/packages/gatsby-remark-images/>
+
 ## StaticQuery
 
 Gatsby v2 から導入された新しい API。Page コンポーネントで使われている GraphQL タグは、Page コンポーネント以外では使用できませんでした。v2 から導入された StaticQuery を利用することで、Layout コンポーネントのように、Page コンポーネントでないコンポーネントでも GraphQL が利用できるようになります。

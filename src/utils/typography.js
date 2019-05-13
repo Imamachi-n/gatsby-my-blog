@@ -58,9 +58,19 @@ Wordpress2016.overrideThemeStyles = () => ({
   //   opacity: "0.7",
   //   boxShadow: "0 1px 0 0 currentColor",
   // },
-  "a.gatsby-resp-image-link": {
-    boxShadow: "none",
+  // "img": {
+  //   width: "100%",
+  // },
+  "a.gatsby-resp-image-link:hover": {
+    // boxShadow: "none",
+    boxShadow: "0 0 5px lightgray",
   },
+  // "img.gatsby-resp-image-image": {
+  //   // boxShadow: "none",
+  //   boxShadow: "0 0 5px lightgray",
+  //   maxWidth: "100%",
+  //   height: "auto",
+  // },
 })
 
 delete Wordpress2016.googleFonts

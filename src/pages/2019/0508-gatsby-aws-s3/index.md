@@ -21,6 +21,14 @@ AWS 以外でドメインは取得しても構わない（AWS だとちょっと
 
 ドメイン取得には、時間がかかります。
 
+![Route-53-Management-Console-get-domain-1](Route-53-Management-Console-get-domain-1.png)
+
+![Route-53-Management-Console-get-domain-2](Route-53-Management-Console-get-domain-2.png)
+
+![Route-53-Management-Console-get-domain-3](Route-53-Management-Console-get-domain-3.png)
+
+![Route-53-Management-Console-get-domain-4](Route-53-Management-Console-get-domain-4.png)
+
 ## AWS Certificate Manager
 
 ### 証明書のプロビジョニング

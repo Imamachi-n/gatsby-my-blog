@@ -51,10 +51,31 @@ Amazon が発行する SSL/TLS 証明書の更新を管理します。
 
 ![AWS-Certificate-Manager-8](AWS-Certificate-Manager-8.png)
 
-![AWS-Certificate-Manager-9](AWS-Certificate-Manager-9.png)
-
 Certificate Manager (ACM) が DNS の検証をサポートしました  
 <https://dev.classmethod.jp/cloud/aws/certificate-manager-dns-validation-support/>
+
+### 証明書をリクエストする AWS リージョン (AWS Certificate Manager 用)
+
+ビューワーと CloudFront との間で HTTPS を必須にするには、証明書をリクエストまたはインポートする前に AWS Certificate Manager コンソールで AWS リージョンを **米国東部（バージニア北部）** に変更する必要があります。
+
+CloudFront で SSL/TLS の証明書を使用するための要件 - 証明書をリクエストする AWS リージョン (AWS Certificate Manager 用)  
+<https://docs.aws.amazon.com/ja_jp/AmazonCloudFront/latest/DeveloperGuide/cnames-and-https-requirements.html#https-requirements-aws-region>
+
+## CloudFront
+
+![CloudFront-Management-Console-1](CloudFront-Management-Console-1.png)
+
+![CloudFront-Management-Console-2](CloudFront-Management-Console-2.png)
+
+![CloudFront-Management-Console-3](CloudFront-Management-Console-3.png)
+
+![CloudFront-Management-Console-4](CloudFront-Management-Console-4.png)
+
+![CloudFront-Management-Console-5](CloudFront-Management-Console-5.png)
+
+![CloudFront-Management-Console-6](CloudFront-Management-Console-6.png)
+
+![CloudFront-Management-Console-7](CloudFront-Management-Console-7.png)
 
 ## S3
 

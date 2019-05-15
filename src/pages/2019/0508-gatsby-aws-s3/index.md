@@ -61,22 +61,6 @@ Certificate Manager (ACM) が DNS の検証をサポートしました
 CloudFront で SSL/TLS の証明書を使用するための要件 - 証明書をリクエストする AWS リージョン (AWS Certificate Manager 用)  
 <https://docs.aws.amazon.com/ja_jp/AmazonCloudFront/latest/DeveloperGuide/cnames-and-https-requirements.html#https-requirements-aws-region>
 
-## CloudFront
-
-![CloudFront-Management-Console-1](CloudFront-Management-Console-1.png)
-
-![CloudFront-Management-Console-2](CloudFront-Management-Console-2.png)
-
-![CloudFront-Management-Console-3](CloudFront-Management-Console-3.png)
-
-![CloudFront-Management-Console-4](CloudFront-Management-Console-4.png)
-
-![CloudFront-Management-Console-5](CloudFront-Management-Console-5.png)
-
-![CloudFront-Management-Console-6](CloudFront-Management-Console-6.png)
-
-![CloudFront-Management-Console-7](CloudFront-Management-Console-7.png)
-
 ## S3
 
 ウェブサイトアクセスに必要なアクセス許可  
@@ -148,4 +132,33 @@ yarn build && yarn deploy
 
 <http://www.imamachi-n.com.s3-website-ap-northeast-1.amazonaws.com>
 
+一時的に、S3 に直接アクセスできるように設定して、S3 バケットにアクセスできるかどうか確認します。
+
+その後、設定を変更し、
+
+![S3-Management-Console-12](S3-Management-Console-12.png)
+
 ## CloudFront
+
+![CloudFront-Management-Console-1](CloudFront-Management-Console-1.png)
+
+![CloudFront-Management-Console-2](CloudFront-Management-Console-2.png)
+
+![CloudFront-Management-Console-3](CloudFront-Management-Console-3.png)
+
+![CloudFront-Management-Console-4](CloudFront-Management-Console-4.png)
+
+![CloudFront-Management-Console-5](CloudFront-Management-Console-5.png)
+
+![CloudFront-Management-Console-6](CloudFront-Management-Console-6.png)
+
+![CloudFront-Management-Console-7](CloudFront-Management-Console-7.png)
+
+![CloudFront-Management-Console-8](CloudFront-Management-Console-8.png)
+
+![CloudFront-Management-Console-9](CloudFront-Management-Console-9.png)
+
+けっこう、時間がかかる。
+
+AWS S3 を CloudFront 対応にする  
+<https://www.aws-book.com/getting-started/cloudfront/s3.html>

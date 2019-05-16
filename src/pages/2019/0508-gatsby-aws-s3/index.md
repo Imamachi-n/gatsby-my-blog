@@ -5,10 +5,13 @@ tags:
   - Gatsby
   - Blog
   - AWS
+  - AWS Certificate Manager
   - S3
   - CloudFront
   - CodeBuild
 ---
+
+## 前提／構成
 
 ## GitHub
 
@@ -16,10 +19,9 @@ tags:
 
 ### ドメインの登録
 
-手順に従って、AWS 上でドメインを取得する。
-AWS 以外でドメインは取得しても構わない（AWS だとちょっと割高）。
+まず、Route 53 で、ドメインの登録を行います（AWS の他のサービスと連携しやすいという理由から）。Route 53 だとちょっと割高になるので、AWS 以外でドメインは取得しても構いません。
 
-ドメイン取得には、時間がかかります。
+SWS のコンソールから、手順に従って、簡単に AWS 上でドメインを取得できます。
 
 ![Route-53-Management-Console-get-domain-1](Route-53-Management-Console-get-domain-1.png)
 
@@ -28,6 +30,8 @@ AWS 以外でドメインは取得しても構わない（AWS だとちょっと
 ![Route-53-Management-Console-get-domain-3](Route-53-Management-Console-get-domain-3.png)
 
 ![Route-53-Management-Console-get-domain-4](Route-53-Management-Console-get-domain-4.png)
+
+登録完了後、ドメイン取得には 30 分程度時間がかかります。
 
 ## AWS Certificate Manager
 
@@ -62,6 +66,11 @@ CloudFront で SSL/TLS の証明書を使用するための要件 - 証明書を
 <https://docs.aws.amazon.com/ja_jp/AmazonCloudFront/latest/DeveloperGuide/cnames-and-https-requirements.html#https-requirements-aws-region>
 
 ## S3
+
+CloudFront を利用する場合、S3 の静的ウェブサイトホスティングは利用しません（逆に、CloudFront 経由で S3 にアクセスする場合に、S3 の静的ウェブサイトホスティング機能を ON にしていると、CloudFront 経由でアクセスできなくなります）。
+
+CloudFront を使用して S3 静的ウェブサイトを提供する手順  
+<https://dev.classmethod.jp/cloud/aws/cloudfront-s3-web/>
 
 ウェブサイトアクセスに必要なアクセス許可  
 <https://docs.aws.amazon.com/ja_jp/AmazonS3/latest/dev/WebsiteAccessPermissionsReqd.html>

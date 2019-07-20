@@ -44,7 +44,7 @@ const indexStyle = css`
   position: sticky;
   height: 100%;
   top: 7px;
-  overflow-y: scroll;
+  overflow-y: auto;
 
   @media (max-width: 700px) {
     display: none;

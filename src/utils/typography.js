@@ -63,7 +63,7 @@ Wordpress2016.overrideThemeStyles = () => ({
   // },
   "a.gatsby-resp-image-link:hover": {
     // boxShadow: "none",
-    boxShadow: "0 0 5px lightgray",
+    // boxShadow: "0 0 5px lightgray",
   },
   // "img.gatsby-resp-image-image": {
   //   // boxShadow: "none",

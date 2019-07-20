@@ -1,5 +1,5 @@
 ---
-title: JJUG
+title: JSUG勉強会 2019その7 メモ
 date: "2019-07-12"
 tags:
   - Java
@@ -44,6 +44,11 @@ simple retry policy
 
 フェイルオーバー試験をすべき。
 
+### スライド
+
+クラウド時代だから Spring-Retry フレームワーク
+<https://docs.google.com/presentation/d/1UjSUpSgSdicpTnQUziwe4_FzZFrNMQ7fcGt4gzv_SEk/edit#slide=id.g5d22b951f3_0_107>
+
 ## フレームワーク移行で学ぶ Spring Boot のつまづきポイント
 
 View へのデータの渡し方  
@@ -52,3 +57,5 @@ Helper クラスを用意して、チーム内で同様の渡し方を実現す�
 github: dbflute-exmaple-on-springboot
 
 ## これで怖くない！？コードリーディングで学ぶ Spring Security
+
+<https://www.slideshare.net/masatoshitada7/spring-security-meetup>

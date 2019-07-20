@@ -14,7 +14,10 @@ export default Bloglist
 
 const query = graphql`
   query MarkdownList {
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+    allMarkdownRemark(
+      filter: { frontmatter: { tags: { nin: ["WIP"] } } }
+      sort: { fields: [frontmatter___date], order: DESC }
+    ) {
       totalCount
       edges {
         node {

@@ -167,7 +167,90 @@ yarn build && yarn deploy
 
 ![CloudFront-Management-Console-9](CloudFront-Management-Console-9.png)
 
-けっこう、時間がかかる。
+CloudFront から S3 の Bucket へは、IAM ロールを使ってアクセスします。しかし、この場合、サーバサイドでの 301/302 リダイレクトができないため、index.html 以外へのアクセスができないです。
+
+あとで、Lambda@Edge を使って、他のルーティングもできるように修正します。
+
+デプロイに、けっこう時間がかかる。
 
 AWS S3 を CloudFront 対応にする  
 <https://www.aws-book.com/getting-started/cloudfront/s3.html>
+
+残念ながら、今の設定だと、サーバ側の 301/302 のリダイレクトができなくなるので、ルートディレクトリとして設定した`index.html`以外の URL に直接アクセスすることができなくなってしまいます(この問題は、Gatsby の公式ページでも指摘されています)。
+
+Deploying to S3/Cloudfront  
+<https://www.gatsbyjs.org/docs/deploying-to-s3-cloudfront/>
+
+CloudFront redirecting to origin?  
+<https://acloud.guru/forums/aws-certified-developer-associate/discussion/-KcC5f1fw3l4-tclsXje/cloudfront_redirecting_to_orig>
+
+CloudFront ディストリビューションのオリジンとして S3 ウェブサイトのエンドポイントを使用しています。HTTP レスポンスコード 403 (Access Denied) が発生するのはなぜですか？  
+<https://aws.amazon.com/jp/premiumsupport/knowledge-center/s3-website-cloudfront-error-403/>
+
+Running GatsbyJS using Amazon S3 and CloudFront  
+<https://www.bayphillips.com/blog/gatsbyjs-using-amazon-s3-and-cloudfront/>
+
+## Lambda@Edge
+
+Gatsby の仕様として、`http://imamachi-n.com:8000/2019/0508-gatsby-aws-s3/`のようなサブディレクトリにアクセスした場合、サーバサイドでのリダイレクト（301/302）が発生し、`http://imamachi-n.com:8000/2019/0508-gatsby-aws-s3/index.html`にアクセスします。
+
+今回のように、S3 にオリジンを配置し、CloudFront にデータをキャッシュさせた場合、サーバサイドのリダイレクトができません。
+CloudFront の`Default Root Object`で`index.html`に設定することができますが、以下に示すとおりトップページにしか適応されません。
+
+- http://imamachi-n.com/ → index.html を返す
+- http://imamachi-n.com/subdir/ → index.html は返りません
+
+Deploying to S3/Cloudfront  
+<https://www.gatsbyjs.org/docs/deploying-to-s3-cloudfront/>
+
+![Lambda-edge-1](Lambda-edge-1.png)
+
+![Lambda-edge-2](Lambda-edge-2.png)
+
+![Lambda-edge-3](Lambda-edge-3.png)
+
+![Lambda-edge-4](Lambda-edge-4.png)
+
+![Lambda-edge-5](Lambda-edge-5.png)
+
+![Lambda-edge-6](Lambda-edge-6.png)
+
+![Lambda-edge-7](Lambda-edge-7.png)
+
+![Lambda-edge-8](Lambda-edge-8.png)
+
+![Lambda-edge-9](Lambda-edge-9.png)
+
+![Lambda-edge-10](Lambda-edge-10.png)
+
+![Lambda-edge-11](Lambda-edge-11.png)
+
+![Lambda-edge-12](Lambda-edge-12.png)
+
+![Lambda-edge-13](Lambda-edge-13.png)
+
+Lambda@Edge を設定するために、Lambda@Edge の IAM 実行ロールが必要です。  
+Lambda 関数を生成したときにできる実行ロールには、Lambda 用のサービスプリンシパルしか許可されていないので、`edgelambda.amazonaws.com`を追加します。
+
+IAM ロール設定の［信頼関係］タブを開いて、［信頼関係の編集］を開き、以下のように設定します。
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "Service": ["lambda.amazonaws.com", "edgelambda.amazonaws.com"]
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
+```
+
+デフォルトでは、CloudFront イベントが Lambda 関数をトリガーするたびに、データが CloudWatch Logs に書き込まれます。これらのログを使用する場合は、CloudWatch Logs にデータを書き込むためのアクセス権限が実行ロールに必要です。
+今回のケースだと、このログをいちいち出す必要がないので、この実行ロールを作りませんでした。
+
+Lambda@Edge 用の IAM アクセス権限とロールの設定  
+<https://docs.aws.amazon.com/ja_jp/AmazonCloudFront/latest/DeveloperGuide/lambda-edge-permissions.html>

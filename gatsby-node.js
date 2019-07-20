@@ -39,6 +39,7 @@ exports.createPages = ({ graphql, actions }) => {
   return graphql(`
     {
       allMarkdownRemark(
+        filter: { frontmatter: { tags: { nin: ["WIP"] } } }
         sort: { order: DESC, fields: [frontmatter___date] }
         limit: 1000
       ) {

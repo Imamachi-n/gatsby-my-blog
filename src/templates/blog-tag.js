@@ -60,7 +60,7 @@ export const query = graphql`
 
     filteredRemarkPosts: allMarkdownRemark(
       limit: 1000
-      filter: { frontmatter: { tags: { in: [$tag] } } }
+      filter: { frontmatter: { tags: { in: [$tag], nin: ["WIP"] } } }
       sort: { fields: [frontmatter___date], order: DESC }
     ) {
       totalCount

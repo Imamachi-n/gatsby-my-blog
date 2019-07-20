@@ -58,21 +58,19 @@ const titleStyle = css`
 
 const Itemlist = ({ posts }) => (
   <article>
-    {" "}
     {posts.map(({ node }) => (
       <div key={node.id}>
         <div css={postStyle}>
           <div css={dateStyle}>
-            {" "}
-            {node.frontmatter.date} <span> {node.frontmatter.year} </span>{" "}
+            {node.frontmatter.date} <span> {node.frontmatter.year} </span>
           </div>
           <Link to={node.fields.slug} css={linkStyle}>
-            <h3 css={titleStyle}> {node.frontmatter.title} </h3>{" "}
-            <p> {node.excerpt} </p>{" "}
-          </Link>{" "}
-        </div>{" "}
+            <h3 css={titleStyle}> {node.frontmatter.title} </h3>
+            <p> {node.excerpt} </p>
+          </Link>
+        </div>
       </div>
-    ))}{" "}
+    ))}
   </article>
 )
 

@@ -192,6 +192,8 @@ Running GatsbyJS using Amazon S3 and CloudFront
 
 ## Lambda@Edge
 
+リージョンを「バージニア北部」に設定する。
+
 Gatsby の仕様として、`http://imamachi-n.com:8000/2019/0508-gatsby-aws-s3/`のようなサブディレクトリにアクセスした場合、サーバサイドでのリダイレクト（301/302）が発生し、`http://imamachi-n.com:8000/2019/0508-gatsby-aws-s3/index.html`にアクセスします。
 
 今回のように、S3 にオリジンを配置し、CloudFront にデータをキャッシュさせた場合、サーバサイドのリダイレクトができません。
@@ -254,3 +256,29 @@ IAM ロール設定の［信頼関係］タブを開いて、［信頼関係の�
 
 Lambda@Edge 用の IAM アクセス権限とロールの設定  
 <https://docs.aws.amazon.com/ja_jp/AmazonCloudFront/latest/DeveloperGuide/lambda-edge-permissions.html>
+
+## CodePipeline
+
+![CodePipeline-1](CodePipeline-1.png)
+
+![CodePipeline-2](CodePipeline-2.png)
+
+![CodePipeline-3](CodePipeline-3.png)
+
+![CodePipeline-4](CodePipeline-4.png)
+
+![CodePipeline-5](CodePipeline-5.png)
+
+![CodePipeline-6](CodePipeline-6.png)
+
+![CodePipeline-7](CodePipeline-7.png)
+
+![CodePipeline-8](CodePipeline-8.png)
+
+![CodePipeline-9](CodePipeline-9.png)
+
+![CodePipeline-10](CodePipeline-10.png)
+
+![CodePipeline-11](CodePipeline-11.png)
+
+![CodePipeline-12](CodePipeline-12.png)

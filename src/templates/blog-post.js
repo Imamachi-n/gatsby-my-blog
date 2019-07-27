@@ -192,7 +192,12 @@ export default props => {
   const tocLinks = post.headings.map(({ value, depth }) => {
     return {
       value: value,
-      link: value.replace(" ", "-").toLowerCase(),
+      link: value
+        .replace(/\s+/g, "-")
+        .replace(/@/g, "")
+        .replace(/\(/g, "")
+        .replace(/\)/g, "")
+        .toLowerCase(),
       depth: depth,
     }
   })
@@ -201,7 +206,7 @@ export default props => {
   const tagLinks = post.frontmatter.tags.map(tag => {
     return {
       name: tag,
-      link: "/tags/" + tag.replace(" ", "-").toLowerCase(),
+      link: "/tags/" + tag.replace(/\s+/g, "-").toLowerCase(),
     }
   })
 

@@ -110,7 +110,7 @@ exports.createPages = ({ graphql, actions }) => {
     // Tag pageの動的生成
     allTags.forEach((tag, index) => {
       createPage({
-        path: `/tags/${tag.replace(" ", "-").toLowerCase()}/`,
+        path: `/tags/${tag.replace(/\s+/g, "-").toLowerCase()}/`,
         component: path.resolve(`./src/templates/blog-tag.js`),
         context: {
           tag: tag,

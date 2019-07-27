@@ -12,6 +12,7 @@ Wordpress2016.overrideThemeStyles = () => ({
       "Hiragino Kaku Gothic ProN",
       "Kosugi Maru",
       '"Noto Sans Japanese"',
+      "Arial",
       '"游ゴシック  Medium"',
       '"Yu Gothic Medium"',
       '"メイリオ"',

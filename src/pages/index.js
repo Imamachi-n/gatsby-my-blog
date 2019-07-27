@@ -4,6 +4,7 @@ import { css } from "@emotion/core"
 
 import Layout from "../components/layout/layout"
 import Bloglist from "../components/layout/blog-list"
+import BloglistDev from "../components/layout/blog-list-dev"
 import SEO from "../components/seo"
 
 const characterColor = css`
@@ -31,7 +32,12 @@ export default () => {
     <Layout>
       <div css={mainStyle}>
         <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
-        <h1 css={titleStyle}> Blog Top </h1> <Bloglist />
+        <h1 css={titleStyle}> Blog Top </h1>
+        {process.env.NODE_ENV === `development` ? (
+          <BloglistDev />
+        ) : (
+          <Bloglist />
+        )}
       </div>
     </Layout>
   )

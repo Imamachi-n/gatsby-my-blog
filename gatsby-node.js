@@ -31,31 +31,60 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
   }
 }
 
+const prodQuery = `
+  query createPage {
+    allMarkdownRemark(
+      filter: { frontmatter: { tags: { nin: ["WIP"] } } }
+      sort: { order: DESC, fields: [frontmatter___date] }
+      limit: 1000
+    ) {
+      edges {
+        node {
+          fields {
+            slug
+          }
+          frontmatter {
+            tags
+          }
+        }
+      }
+    }
+  }
+`
+
+const devQuery = `
+query createPage {
+  allMarkdownRemark(
+    sort: { order: DESC, fields: [frontmatter___date] }
+    limit: 1000
+  ) {
+    edges {
+      node {
+        fields {
+          slug
+        }
+        frontmatter {
+          tags
+        }
+      }
+    }
+  }
+}
+`
+
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
 
   // **Note:** The graphql function call returns a Promise
   // see: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise for more info
-  return graphql(`
-    {
-      allMarkdownRemark(
-        filter: { frontmatter: { tags: { nin: ["WIP"] } } }
-        sort: { order: DESC, fields: [frontmatter___date] }
-        limit: 1000
-      ) {
-        edges {
-          node {
-            fields {
-              slug
-            }
-            frontmatter {
-              tags
-            }
-          }
-        }
-      }
-    }
-  `).then(result => {
+  let query
+  if (process.env.NODE_ENV === `development`) {
+    query = devQuery
+  } else {
+    query = prodQuery
+  }
+
+  return graphql(query).then(result => {
     if (result.errors) {
       console.log(result.errors)
       return reject(result.errors)

@@ -1,6 +1,6 @@
 ---
 title: CloudNative Tokyo Days
-date: "2019-05-08"
+date: "2019-07-22"
 tags:
   - Kubernetes
   - WIP

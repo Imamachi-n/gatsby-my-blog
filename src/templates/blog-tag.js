@@ -28,7 +28,10 @@ const titleStyle = css`
 `
 
 export default props => {
-  const posts = props.data.filteredRemarkPosts
+  const posts =
+    process.env.NODE_ENV === `development`
+      ? props.data.filteredRemarkPostsDev
+      : props.data.filteredRemarkPostsProd
 
   return (
     <>
@@ -58,9 +61,32 @@ export const query = graphql`
       }
     }
 
-    filteredRemarkPosts: allMarkdownRemark(
+    filteredRemarkPostsProd: allMarkdownRemark(
       limit: 1000
       filter: { frontmatter: { tags: { in: [$tag], nin: ["WIP"] } } }
+      sort: { fields: [frontmatter___date], order: DESC }
+    ) {
+      totalCount
+      edges {
+        node {
+          id
+          frontmatter {
+            title
+            date: date(formatString: "MM/DD")
+            year: date(formatString: "YYYY")
+            tags
+          }
+          fields {
+            slug
+          }
+          excerpt
+        }
+      }
+    }
+
+    filteredRemarkPostsDev: allMarkdownRemark(
+      limit: 1000
+      filter: { frontmatter: { tags: { in: [$tag] } } }
       sort: { fields: [frontmatter___date], order: DESC }
     ) {
       totalCount

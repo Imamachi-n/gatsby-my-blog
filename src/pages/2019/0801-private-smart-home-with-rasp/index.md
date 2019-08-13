@@ -390,11 +390,16 @@ location / {
 $ sudo nginx -t
 ```
 
+ファイアウォール設定。
+
 ```bash
 $ sudo ufw app list
 
 $ sudo ufw allow 'Nginx Full'
 ```
+
+ログ確認
+`/var/log/nginx`
 
 ## Let's encrypt で証明書発行
 
@@ -423,3 +428,8 @@ Setup Let's Encrypt for Express
 
 - Nginx のリバースプロキシの設定（特に Slack 専用の Header 情報の受け渡し）
 - forever による Express サーバの永続化
+
+### 注意書き
+
+- 80, 443 port は、ISP（インターネットプロバイダ）によって塞がれている事が多いので、別のポートを選択したほうがいい。
+  この場合、ルータ側でポートフォワーディングしても無駄。

@@ -92,7 +92,8 @@ public class Role {
 ```
 
 `@NaturalId`は primary key ではないが、内部的にユニークなキーとなるフィールド。  
-例えば、employee テーブルで、id は primary key となるが、id で検索するのではなく、同じくユニークなキーとなる email で検索したい場合に、`@NaturalId`をつけておくと便利。
+例えば、employee テーブルで、id は primary key となるが、id で検索するのではなく、同じくユニークなキーとなる。
+email で検索したい場合に、`@NaturalId`をつけておくと便利。
 
 Hibernate @NaturalId Example Tutorial  
 <https://howtodoinjava.com/hibernate/hibernate-naturalid-example-tutorial/>

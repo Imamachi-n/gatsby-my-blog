@@ -4,7 +4,6 @@ date: "2019-10-04"
 tags:
   - AWS
   - Conference
-  - WIP
 ---
 
 ## マイクロサービスを支えるインフラストラクチャ
@@ -708,13 +707,13 @@ SubScription で引数を使用して特定のユーザのみの画面を更新�
 
 #### GraphQL API に実行権限をつけたい
 
-* 管理者飲みが使えるAPIと分けたい。
-* CognitoグループでAPIを叩けるかどうか分けることが**スキーマ定義**として可能。
+- 管理者飲みが使える API と分けたい。
+- Cognito グループで API を叩けるかどうか分けることが**スキーマ定義**として可能。
 
-#### GraphQLのパフィーマンス・状態の可視化
+#### GraphQL のパフィーマンス・状態の可視化
 
-* CloudWatch Insightsへの連携が可能。AWSの判定基準に合わせて、見れる。
-* ElasticSearchやKibanaとの連携が可能。
+- CloudWatch Insights への連携が可能。AWS の判定基準に合わせて、見れる。
+- ElasticSearch や Kibana との連携が可能。
 
 #### VTL
 

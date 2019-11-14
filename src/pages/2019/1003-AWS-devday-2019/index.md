@@ -4,7 +4,6 @@ date: "2019-10-03"
 tags:
   - AWS
   - Conference
-  - WIP
 ---
 
 ## ゼネラルセッション
